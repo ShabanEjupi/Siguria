@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rreth nesh sipas Intelegjences Artificiale - KoreaDrive.ks | Premium Korean Cars in Pristina</title>
+  <link rel="stylesheet" href="assets/css/style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyQdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="carFilter.js"></script>
+
+  <style>
+    /* Stilimi i Përgjithshëm */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .hero-section {
+      background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./assets/img/hero-background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 120px 0;
+      text-align: center;
+    }
+    
+    .hero-section h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+    }
+    
+    .hero-section p {
+      font-size: 1.4em;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .about-content {
+      padding: 80px 0;
+    }
+    
+    .about-content h2 {
+      color: #1a3a7a;
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .about-image {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .values-section {
+      background-color: #f3f8fe;
+      padding: 80px 0;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .value-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .value-icon {
+      font-size: 2.5em;
+      color: #1a3a7a;
+      margin-bottom: 20px;
+    }
+    
+    .value-card h3 {
+      color: #1a3a7a;
+      margin-bottom: 15px;
+    }
+    
+    .team-section {
+      padding: 80px 0;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .team-member {
+      text-align: center;
+    }
+    
+    .team-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 5px solid #f3f8fe;
+    }
+    
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .team-member h3 {
+      color: #1a3a7a;
+      margin-bottom: 5px;
+    }
+    
+    .team-member p {
+      color: #666;
+    }
+    
+    .stats-section {
+      background-color: #1a3a7a;
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .stat-item h3 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    
+    @media (max-width: 992px) {
+      .about-grid, .team-grid, .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .about-grid, .team-grid, .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Stilimi i header-it */
+    .h-light {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 0;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-image {
+      height: 50px;
+      width: auto;
+    }
+    
+    header nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    
+    header nav ul li {
+      margin: 0 10px;
+    }
+    
+    header nav ul li a {
+      color: #1a3a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05em;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    header nav ul li a:hover {
+      background-color: #f3f8fe;
+      color: #1a3a7a;
+    }
+    
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+      }
+      
+      header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 15px;
+      }
+    }
+
+    /* Stilimi i Footer-it */
+    .f-light {
+      background-color: #1a3a7a;
+      color: white;
+      padding: 60px 0 20px;
+      margin-top: 50px;
+    }
+    
+    footer .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    footer .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    
+    footer h3 {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #fff;
+    }
+    
+    footer p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    footer .col-contact p {
+      display: flex;
+      align-items: center;
+    }
+    
+    footer .col-contact i {
+      margin-right: 15px;
+      min-width: 20px;
+      color: #c1d3f9;
+    }
+    
+    footer .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    footer .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    footer .social-icons a:hover {
+      background-color: white;
+      color: #1a3a7a;
+      transform: translateY(-3px);
+    }
+    
+    footer .copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      footer .columns {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="h-light">
+    <div class="container">
+        <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+        <nav>
+            <ul>
+                <li><a href="index.html">Ballina</a></li>
+                <li><a href="cars.html">Veturat</a></li>
+                <li><a href="about.html">Rreth Nesh</a></li>
+                <li><a href="contact.html">Kontakti</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+       <section class="hero-section">
+        <div class="container">
+          <h1>Rreth KoreaDrive.ks sipas Intelegjences Artificiale</h1>
+          <p>Ne sjellim automobilat më të mira koreanë në rrugët e Kosovës që nga 2025</p>
+        </div>
+      </section>
+    
+      <section class="about-content">
+        <div class="container">
+          <h2>Historia Jonë sipas Intelegjences Artificiale (fiktive)</h2>
+          <div class="about-grid">
+            <div class="about-image">
+              <img src="./assets/img/car1.jpg" alt="Showroom-i i KoreaDrive">
+            </div>
+            <div class="about-text">
+              <p>E themeluar në vitin 2025, KoreaDrive.ks u ngrit nga një vëzhgim i thjeshtë: rrugët e Kosovës kishin nevojë për cilësinë jashtëzakonshme, inovacionin dhe besueshmërinë që ofrojnë automobilat koreanë. Themeluesi ynë, pasi kaloi vite në Koren e Jugut, kuptoi përputhshmërinë perfekte midis shkëlqimit automobilistik korean dhe kërkesës në rritje të Kosovës për vetura të besueshme dhe të pasura me karakteristika.</p>
+              
+              <p>Ajo që filloi si një biznes i vogël importimi me vetëm tre vetura, ka evoluar në destinacionin kryesor të Kosovës për automobilat koreanë. Ne specializohemi në sjelljen e makinave të cilësisë së lartë, të përdorura, nga prodhuesit kryesorë koreanë si Hyundai, Kia, Genesis dhe SsangYong, direkt në Prishtinë.</p>
+              
+              <p>Ekipi ynë i përkushtuar udhëton rregullisht në Koren e Jugut për të inspektuar dhe zgjedhur personalisht çdo veturë në inventar, duke siguruar që vetëm shembujt më të mirë të arrijnë në showroom-in tonë. Ne merremi me të gjitha aspektet e importimit, dokumentimit dhe përgatitjes, që klientët tanë të kenë një përvojë pa probleme.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="values-section">
+        <div class="container">
+          <h2>Vlerat Tona sipas intelegjences artificiale</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3>Cilësi e Sigurt</h3>
+              <p>Çdo veturë kalon një inspektim rigoroz prej koreanëve përpara se të shtohet në inventar.</p>
+            </div>
+            
+            
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3>Transparencë</h3>
+              <p>Ne ofrojmë historin e plotë të veturës sipas organeve koreane.</p>
+            </div>
+            
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h3>Shërbim ndaj Konsumatorit</h3>
+              <p>Marrëdhënia jonë nuk përfundon me blerjen tuaj. Ne ofrojmë mbështetje të vazhdueshme, këshilla mirëmbajtjeje dhe shërbim të specializuar për avtomjetet koreanë përmes rrjetit tonë të teknikëve të certifikuar sipas kërkesave të konsumatorëve tonë.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="team-section">
+        <div class="container">
+          <h2>Tako ekipin tonë të gjeneruar nga AI</h2>
+          <div class="team-grid">
+            <div class="team-member">
+              <div class="team-image">
+                <img src="./assets/img/team/ceo.jpg" alt="Arben Krasniqi">
+              </div>
+              <h3>Agjenti 1</h3>
+              <p>Themelues dhe CEO</p>
+            </div>
+            
+            <div class="team-member">
+              <div class="team-image">
+                <img src="./assets/img/team/sales-manager.jpg" alt="Vlera Berisha">
+              </div>
+              <h3>Agjentja 2</h3>
+              <p>Managjere e shitjeve</p>
+            </div>
+            
+            <div class="team-member">
+              <div class="team-image">
+                <img src="./assets/img/team/technical-advisor.jpg" alt="Besnik Hoxha">
+              </div>
+              <h3>Agjenti 3</h3>
+              <p>Këshilltar teknik</p>
+            </div>
+            
+            <div class="team-member">
+              <div class="team-image">
+                <img src="./assets/img/team/customer-service.jpg" alt="Drita Gashi">
+              </div>
+              <h3>Agjentja 4</h3>
+              <p>Shërbim për konsumatorin</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="stats-section">
+        <div class="container">
+          <h2>KoreaDrive.ks me Numra sipas intelegjences artificiale</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <h3>500+</h3>
+              <p>Veturat e Importuara</p>
+            </div>
+            
+            <div class="stat-item">
+              <h3>450+</h3>
+              <p>Konsumatorë të Kënaqur</p>
+            </div>
+            
+            <div class="stat-item">
+              <h3>0</h3>
+              <p>Vite në Biznes</p>
+            </div>
+            
+            <div class="stat-item">
+              <h3>4.9/5</h3>
+              <p>Kënaqësia e Klientit</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <footer class="f-light" id="contact">
+        <div class="container">
+          <div class="columns">
+            <div class="col-info">
+              <h3>KoreaDrive.ks sipas intelegjences artificiale</h3>
+              <p>Makina premium koreane në Prishtinë</p>
+              <p>Në shërbim të Kosovës që nga 2025</p>
+            </div>
+            
+            <div class="col-contact">
+              <h3>Na Kontaktoni</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Pristina</p>
+              <p><i class="fas fa-phone"></i> +383 45 601 379</p>
+              <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+            </div>
+            
+            <div class="col-social">
+              <h3>Na Ndiqni</h3>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
+          </div>
+        </div>
+      </footer>
+
+</body>
+</html>

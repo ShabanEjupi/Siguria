@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakti - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        /* Stilimi i Përgjithshëm */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Stilimi i Header-it */
+        .h-light {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-image {
+            height: 50px;
+            width: auto;
+        }
+        
+        header nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        header nav ul li {
+            margin: 0 10px;
+        }
+        
+        header nav ul li a {
+            color: #1a3a7a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        header nav ul li a:hover {
+            background-color: #f3f8fe;
+            color: #1a3a7a;
+        }
+        
+        /* Contact Hero Section */
+        .contact-hero {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/img/contact-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+        
+        .contact-hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Contact Grid Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .section-title {
+            color: #1a3a7a;
+            font-size: 2em;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #1a3a7a;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 40px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            background-color: #1a3a7a;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3em;
+        }
+        
+        .contact-text h3 {
+            color: #1a3a7a;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+        
+        .contact-text p {
+            color: #555;
+        }
+        
+        /* Business Hours */
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: #1a3a7a;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a3a7a;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 1em;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a3a7a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #152e5f;
+            transform: translateY(-2px);
+        }
+        
+        /* Map Section */
+        .map-section {
+            margin-top: 80px;
+        }
+        
+        .map-container {
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        .f-light {
+            background-color: #1a3a7a;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 50px;
+        }
+        
+        footer .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        footer .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        footer h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        footer h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #fff;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        footer .col-contact p {
+            display: flex;
+            align-items: center;
+        }
+        
+        footer .col-contact i {
+            margin-right: 15px;
+            min-width: 20px;
+            color: #c1d3f9;
+        }
+        
+        footer .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        footer .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        footer .social-icons a:hover {
+            background-color: white;
+            color: #1a3a7a;
+            transform: translateY(-3px);
+        }
+        
+        footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                order: -1;
+                margin-bottom: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+            
+            header nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1em;
+            }
+            
+            footer .columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="h-light">
+        <div class="container">
+            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ballina</a></li>
+                    <li><a href="cars.html">Veturat</a></li>
+                    <li><a href="about.html">Rreth Nesh</a></li>
+                    <li><a href="contact.html">Kontakti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Na Kontaktoni</h1>
+            <p>Jemi këtu për t'ju ndihmuar me pyetjet tuaja dhe për t'ju udhëzuar në zgjedhjen e veturës së duhur koreane</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <h2 class="section-title">Informacione Kontakti</h2>
+                    
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Lokacioni Ynë</h3>
+                                <p>Rr. Zejnel Salihu, Prishtinë 10000</p>
+                                <p>Kosovë</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Na Telefononi</h3>
+                                <p>+383 45 601 379</p>
+                                <p>+383 49 123 456</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Na Shkruani</h3>
+                                <p>etinup1@gmail.com</p>
+                                <p>info@koreadrive.ks</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title">Orari i Punës</h2>
+                    <ul class="hours-list">
+                        <li>
+                            <span class="day">E Hënë - E Premte:</span>
+                            <span class="hours">09:00 - 18:00</span>
+                        </li>
+                        <li>
+                            <span class="day">E Shtunë:</span>
+                            <span class="hours">10:00 - 16:00</span>
+                        </li>
+                        <li>
+                            <span class="day">E Dielë:</span>
+                            <span class="hours">E Mbyllur</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form">
+                        <h2 class="section-title">Na Dërgoni një Mesazh</h2>
+                        
+                        <div class="form-group">
+                            <label for="name">Emri dhe Mbiemri</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Numri i Telefonit</label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Tema</label>
+                            <select id="subject" name="subject" class="form-control" required>
+                                <option value="">Zgjidhni një temë</option>
+                                <option value="vehicle-inquiry">Pyetje për Veturë</option>
+                                <option value="test-drive">Kërkesë për Test Drive</option>
+                                <option value="pricing">Informacione për Çmime</option>
+                                <option value="import-process">Procesi i Importimit</option>
+                                <option value="other">Tjetër</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mesazhi</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Dërgo Mesazhin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Na Gjeni Këtu</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.127377594405!2d21.162747015611757!3d42.662746979167074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee504b2cc8d%3A0x79bcd88fc88dce0c!2sRruga%20Zejnel%20Salihu%2C%20Prishtin%C3%AB!5e0!3m2!1sen!2s!4v1616932132774!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="f-light" id="contact">
+        <div class="container">
+            <div class="columns">
+                <div class="col-info">
+                    <h3>KoreaDrive.ks</h3>
+                    <p>Makina premium koreane në Prishtinë</p>
+                    <p>Në shërbim të Kosovës që nga 2025</p>
+                </div>
+                
+                <div class="col-contact">
+                    <h3>Na Kontaktoni</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
+                    <p><i class="fas fa-phone"></i> +383 45 601 379</p>
+                    <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+                </div>
+                
+                <div class="col-social">
+                    <h3>Na Ndiqni</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form validation and submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send data to a server
+            // For now, just show a success message
+            alert('Faleminderit për mesazhin tuaj! Do t\'ju kontaktojmë së shpejti.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

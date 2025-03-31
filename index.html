@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaDrive.ks - Importuesi Juaj i Veturave Koreane në Prishtinë</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Stilimi i Përgjithshëm */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Stilimi i Header-it */
+        .h-light {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-image {
+            height: 50px;
+            width: auto;
+        }
+        
+        header nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        header nav ul li {
+            margin: 0 10px;
+        }
+        
+        header nav ul li a {
+            color: #1a3a7a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        header nav ul li a:hover {
+            background-color: #f3f8fe;
+            color: #1a3a7a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./assets/img/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s;
+        }
+        
+        .hero p {
+            font-size: 1.4em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeIn 2s;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a3a7a;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #1a3a7a;
+            margin: 0 10px;
+            animation: fadeIn 2.5s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: #1a3a7a;
+        }
+        
+        /* Featured Cars Section */
+        .featured-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            color: #1a3a7a;
+            font-size: 2.2em;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #1a3a7a;
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .car-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+        
+        .car-details {
+            padding: 20px;
+        }
+        
+        .car-details h3 {
+            color: #1a3a7a;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            color: #666;
+        }
+        
+        .car-specs span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-specs i {
+            margin-right: 5px;
+            color: #1a3a7a;
+        }
+        
+        .car-price {
+            font-size: 1.4em;
+            color: #e63946;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9em;
+        }
+        
+        /* Why Choose Us Section */
+        .why-us-section {
+            background-color: #f3f8fe;
+            padding: 80px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            color: #1a3a7a;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: #1a3a7a;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: #f9f9f9;
+            border-left: 4px solid #1a3a7a;
+            padding: 30px;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 5em;
+            color: rgba(26, 58, 122, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: #1a3a7a;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* Call to Action Section */
+        .cta-section {
+            padding: 80px 0;
+            background-image: linear-gradient(rgba(26, 58, 122, 0.9), rgba(26, 58, 122, 0.9)), url('./assets/img/cta-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        .f-light {
+            background-color: #1a3a7a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        footer .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        footer h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        footer h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #fff;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        footer .col-contact p {
+            display: flex;
+            align-items: center;
+        }
+        
+        footer .col-contact i {
+            margin-right: 15px;
+            min-width: 20px;
+            color: #c1d3f9;
+        }
+        
+        footer .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        footer .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        footer .social-icons a:hover {
+            background-color: white;
+            color: #1a3a7a;
+            transform: translateY(-3px);
+        }
+        
+        footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .cars-grid, .features-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+            
+            header nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .cars-grid, .features-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer .columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="h-light">
+        <div class="container">
+            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ballina</a></li>
+                    <li><a href="cars.html">Veturat</a></li>
+                    <li><a href="about.html">Rreth Nesh</a></li>
+                    <li><a href="contact.html">Kontakti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Veturat Koreane të Cilësisë së Lartë në Prishtinë</h1>
+            <p>Importim i drejtpërdrejtë nga Koreja e Jugut me standardet më të larta të cilësisë dhe çmimet më konkurruese në treg</p>
+            <div class="hero-buttons">
+                <a href="cars.html" class="btn">Shiko Veturat</a>
+                <a href="contact.html" class="btn btn-outline">Na Kontaktoni</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Veturat e Veçanta</h2>
+            <div class="cars-grid">
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car1.jpg" alt="Genesis G80">
+                    </div>
+                    <div class="car-details">
+                        <h3>Genesis G80</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 2021</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 15,000 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Benzinë</span>
+                        </div>
+                        <p>Elegancë luksoze dhe performancë e jashtëzakonshme. I rikthyer direkt nga Koreja.</p>
+                        <div class="car-price">€47,500</div>
+                        <a href="car-details.html?id=1" class="btn btn-small">Detajet</a>
+                    </div>
+                </div>
+                
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car2.jpg" alt="Hyundai Tucson">
+                    </div>
+                    <div class="car-details">
+                        <h3>Hyundai Tucson</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 2022</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 32,000 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Hybrid</span>
+                        </div>
+                        <p>SUV moderne me dizajn futuristik dhe konsum të ulët. I sjellë direkt nga Koreja.</p>
+                        <div class="car-price">€29,800</div>
+                        <a href="car-details.html?id=2" class="btn btn-small">Detajet</a>
+                    </div>
+                </div>
+                
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car3.jpg" alt="Kia K5">
+                    </div>
+                    <div class="car-details">
+                        <h3>Kia K5</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 2022</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 18,500 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Benzinë</span>
+                        </div>
+                        <p>Sedan sportiv me dizajn dinamik dhe teknologji të avancuar. I importuar direkt nga Koreja.</p>
+                        <div class="car-price">€25,900</div>
+                        <a href="car-details.html?id=3" class="btn btn-small">Detajet</a>
+                    </div>
+                </div>
+            </div>
+            <a href="cars.html" class="btn" style="margin-top: 40px;">Shiko të Gjitha Veturat</a>
+        </div>
+    </section>
+
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Pse të Zgjidhni KoreaDrive.ks</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Importim Direkt</h3>
+                    <p>Importojmë vetura direkt nga Koreja e Jugut, duke shmangur ndërmjetësit dhe duke ofruar çmime më të volitshme.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Inspektim Rigoroz</h3>
+                    <p>Çdo veturë kalon një inspektim 150-pikësh nga ekipi korean i ekspertëve para se të importohet në Kosovë.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garanci e Zgjatur</h3>
+                    <p>Ofrojmë garanci të zgjatur për të gjitha veturat tona, duke ju siguruar qetësi mendore për vitet në vijim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Çfarë Thonë Klientët Tanë</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Eksperienca me KoreaDrive.ks ishte fantastike. Çmimet ishin më të mira se në kompani të tjera dhe vetura ime Hyundai është në gjendje të shkëlqyer. Dokumentacioni u kry shpejt dhe pa probleme.</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="./assets/img/testimonials/client1.jpg" alt="Client">
+                        </div>
+                        <div class="author-info">
+                            <h4>Besnik Krasniqi</h4>
+                            <p>Prishtinë</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">E bleva një Kia Sportage nga KoreaDrive.ks dhe jam shumë i kënaqur me veturën. Ekipi ishte i përkushtuar dhe profesional gjatë gjithë procesit. Do t'i rekomandoja pa hezitim!</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="./assets/img/testimonials/client2.jpg" alt="Client">
+                        </div>
+                        <div class="author-info">
+                            <h4>Arta Gashi</h4>
+                            <p>Ferizaj</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Gati për të Vozitur Veturën Tuaj të Re Koreane?</h2>
+            <p>Na vizitoni në showroom-in tonë ose na kontaktoni për më shumë informacione rreth veturave që kemi në dispozicion.</p>
+            <a href="contact.html" class="btn btn-outline">Na Kontaktoni Tani</a>
+        </div>
+    </section>
+
+    <footer class="f-light" id="contact">
+        <div class="container">
+            <div class="columns">
+                <div class="col-info">
+                    <h3>KoreaDrive.ks</h3>
+                    <p>Makina premium koreane në Prishtinë</p>
+                    <p>Në shërbim të Kosovës që nga 2025</p>
+                </div>
+                
+                <div class="col-contact">
+                    <h3>Na Kontaktoni</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
+                    <p><i class="fas fa-phone"></i> +383 45 601 379</p>
+                    <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+                </div>
+                
+                <div class="col-social">
+                    <h3>Na Ndiqni</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>            <!-- ...existing code... -->
+            
+            <header class="h-light">
+                <div class="container">
+                    <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Ballina</a></li>
+                            <li><a href="cars.html">Veturat</a></li>
+                            <li><a href="about.html">Rreth Nesh</a></li>
+                            <li><a href="contact.html">Kontakti</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- ...rest of the existing code... -->
+            
+            <!-- At the end of the file, remove or replace: -->
+            <!-- <script src="App.js"></script> -->
+            <div class="copyright">
+                <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

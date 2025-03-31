@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaDrive.ks - Your Gateway to Korean Cars</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://www.flaticon.com/free-icons/car">
+    <script type="module" src="./App.js"></script>
+    
+    <style>
+        /* Add your custom styles here */
+        /* Example styles for the car listing */
+        .car-listing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .car-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .car-card img {
+            width: 100%;
+            height: auto;
+        }
+        .car-card h3 {
+            margin: 10px;
+            font-size: 1.5em;
+        }
+        .car-card p {
+            margin: 10px;
+            color: #555;
+        }
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 10px auto;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header class="h-light">
+        <div class="container">
+            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive" class="header-image" style="margin-top: 3px;"/>
+        </div>
+    </header>
+    
+    <main class="bg-light">
+        <div class="container">
+            <h1>Welcome to KoreaDrive.ks</h1>
+            <p>Your gateway to the best Korean cars in Pristina!</p>
+            <div class="car-listing" id="car-listing">
+                <!-- Car cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="f-light" id="contact">
+        <div class="container">
+            <p>&copy; 2023 KoreaDrive.ks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="filterCars.js"></script>
+</body>
+</html>

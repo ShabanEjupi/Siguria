@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veturat Koreane - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="carFilter.js"></script>
+    
+    <style>
+        /* Stilimi i Përgjithshëm */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Stilimi i Header-it */
+        .h-light {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-image {
+            height: 50px;
+            width: auto;
+        }
+        
+        header nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        header nav ul li {
+            margin: 0 10px;
+        }
+        
+        header nav ul li a {
+            color: #1a3a7a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        header nav ul li a:hover {
+            background-color: #f3f8fe;
+            color: #1a3a7a;
+        }
+        
+        /* Cars Hero Section */
+        .cars-hero {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/img/cars-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cars-hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+        
+        .cars-hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background-color: white;
+            padding: 30px;
+            margin-top: -30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a3a7a;
+        }
+        
+        .filter-group select, 
+        .filter-group input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a3a7a;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #15305f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #1a3a7a;
+            color: #1a3a7a;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f3f8fe;
+        }
+        
+        /* Cars Grid */
+        .cars-grid-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            color: #1a3a7a;
+            font-size: 2em;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #1a3a7a;
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .car-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .car-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+        
+        .car-details {
+            padding: 20px;
+        }
+        
+        .car-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .car-title h3 {
+            color: #1a3a7a;
+            font-size: 1.3em;
+            margin: 0;
+        }
+        
+        .car-price {
+            background-color: #1a3a7a;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .car-spec {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .car-spec i {
+            color: #1a3a7a;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .car-description {
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        
+        .car-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: white;
+            color: #1a3a7a;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a.active {
+            background-color: #1a3a7a;
+            color: white;
+        }
+        
+        .pagination a:hover {
+            background-color: #f3f8fe;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .f-light {
+            background-color: #1a3a7a;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 50px;
+        }
+        
+        footer .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        footer .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        footer h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        footer h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #fff;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        footer .col-contact p {
+            display: flex;
+            align-items: center;
+        }
+        
+        footer .col-contact i {
+            margin-right: 15px;
+            min-width: 20px;
+            color: #c1d3f9;
+        }
+        
+        footer .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        footer .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        footer .social-icons a:hover {
+            background-color: white;
+            color: #1a3a7a;
+            transform: translateY(-3px);
+        }
+        
+        footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .cars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+            
+            header nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .filter-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer .columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="h-light">
+        <div class="container">
+            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ballina</a></li>
+                    <li><a href="cars.html">Veturat</a></li>
+                    <li><a href="about.html">Rreth Nesh</a></li>
+                    <li><a href="contact.html">Kontakti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="cars-hero">
+        <div class="container">
+            <h1>Përzgjedhje e Veturave Premium Koreane</h1>
+            <p>Shfleto koleksionin tonë të veturave të importuara direkt nga Koreja, me cilësi të garantuar nga ekspertët koreanë</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="filter-section">
+            <form class="filter-form" id="car-filter-form">
+                <div class="filter-group">
+                    <label for="brand">Marka</label>
+                    <select id="brand" name="brand">
+                        <option value="">Të gjitha</option>
+                        <option value="hyundai">Hyundai</option>
+                        <option value="kia">Kia</option>
+                        <option value="genesis">Genesis</option>
+                        <option value="ssangyong">SsangYong</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="year">Viti</label>
+                    <select id="year" name="year">
+                        <option value="">Të gjitha</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="fuel">Karburanti</label>
+                    <select id="fuel" name="fuel">
+                        <option value="">Të gjitha</option>
+                        <option value="petrol">Benzinë</option>
+                        <option value="diesel">Dizel</option>
+                        <option value="hybrid">Hibrid</option>
+                        <option value="electric">Elektrik</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="price">Çmimi Maksimal</label>
+                    <input type="range" id="price" name="price" min="5000" max="50000" step="1000" value="50000">
+                    <output for="price" id="price-output">50,000€</output>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button type="submit" class="btn">Filtro</button>
+                    <button type="reset" class="btn btn-outline">Pastro</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="cars-grid-section">
+            <h2 class="section-title">Veturat Tona</h2>
+            <div class="cars-grid" id="cars-container">
+                <!-- Car 1 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car1.jpg" alt="Genesis G80">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Genesis G80</h3>
+                            <span class="car-price">€47,500</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>15,000 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Benzinë</span>
+                            </div>
+                        </div>
+                        <p class="car-description">Sedan luksoz me performancë të jashtëzakonshme dhe teknologjinë më të fundit. I importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=1" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=1" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 2 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car2.jpg" alt="Hyundai Tucson">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Hyundai Tucson</h3>
+                            <span class="car-price">€29,800</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>32,000 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Hibrid</span>
+                            </div>
+                        </div>
+                        <p class="car-description">SUV moderne me dizajn futuristik dhe konsum të ulët të karburantit. E importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=2" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=2" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 3 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car3.jpg" alt="Kia K5">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Kia K5</h3>
+                            <span class="car-price">€25,900</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>18,500 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Benzinë</span>
+                            </div>
+                        </div>
+                        <p class="car-description">Sedan sportiv me dizajn dinamik dhe teknologji të avancuar. I importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=3" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=3" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 4 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car4.jpg" alt="Kia Sportage">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Kia Sportage</h3>
+                            <span class="car-price">€32,400</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2023</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>9,200 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Dizel</span>
+                            </div>
+                        </div>
+                        <p class="car-description">SUV kompakt me dizajn modern dhe ekonomi të karburantit. E importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=4" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=4" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 5 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car5.jpg" alt="Hyundai Sonata">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Hyundai Sonata</h3>
+                            <span class="car-price">€28,700</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2021</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>25,300 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Benzinë</span>
+                            </div>
+                        </div>
+                        <p class="car-description">Sedan elegant me teknologji të përparuar dhe komoditet superior. I importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=5" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=5" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 6 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="./assets/img/cars/car6.jpg" alt="SsangYong Korando">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>SsangYong Korando</h3>
+                            <span class="car-price">€24,300</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="car-spec">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>22,100 km</span>
+                            </div>
+                            <div class="car-spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Dizel</span>
+                            </div>
+                        </div>
+                        <p class="car-description">SUV i besueshëm me aftësi off-road dhe dizajn të qëndrueshëm. I importuar direkt nga Koreja.</p>
+                        <div class="car-actions">
+                            <a href="car-details.html?id=6" class="btn btn-sm">Detajet</a>
+                            <a href="contact.html?car=6" class="btn btn-sm btn-outline">Pyetni</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="f-light" id="contact">
+        <div class="container">
+            <div class="columns">
+                <div class="col-info">
+                    <h3>KoreaDrive.ks</h3>
+                    <p>Makina premium koreane në Prishtinë</p>
+                    <p>Në shërbim të Kosovës që nga 2025</p>
+                </div>
+                
+                <div class="col-contact">
+                    <h3>Na Kontaktoni</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
+                    <p><i class="fas fa-phone"></i> +383 45 601 379</p>
+                    <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+                </div>
+                
+                <div class="col-social">
+                    <h3>Na Ndiqni</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple price range slider script
+        const priceRange = document.getElementById('price');
+        const priceOutput = document.getElementById('price-output');
+        
+        priceRange.addEventListener('input', function() {
+            priceOutput.textContent = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '€';
+        });
+
+        // Initialize the display
+        priceOutput.textContent = priceRange.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '€';
+    </script>
+</body>
+</html>
