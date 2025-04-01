@@ -29,52 +29,6 @@
             margin: 0 auto;
         }
         
-        /* Stilimi i Header-it */
-        .h-light {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px 0;
-        }
-        
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-image {
-            height: 50px;
-            width: auto;
-        }
-        
-        header nav ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-        }
-        
-        header nav ul li {
-            margin: 0 10px;
-        }
-        
-        header nav ul li a {
-            color: #1a3a7a;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05em;
-            padding: 10px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        header nav ul li a:hover {
-            background-color: #f3f8fe;
-            color: #1a3a7a;
-        }
-        
         /* Cars Hero Section */
         .cars-hero {
             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/img/cars-hero.jpg');
@@ -316,91 +270,6 @@
             transform: translateY(-2px);
         }
         
-        /* Footer */
-        .f-light {
-            background-color: #1a3a7a;
-            color: white;
-            padding: 60px 0 20px;
-            margin-top: 50px;
-        }
-        
-        footer .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        footer .columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        footer h3 {
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        footer h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #fff;
-        }
-        
-        footer p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        footer .col-contact p {
-            display: flex;
-            align-items: center;
-        }
-        
-        footer .col-contact i {
-            margin-right: 15px;
-            min-width: 20px;
-            color: #c1d3f9;
-        }
-        
-        footer .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        footer .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        footer .social-icons a:hover {
-            background-color: white;
-            color: #1a3a7a;
-            transform: translateY(-3px);
-        }
-        
-        footer .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.9em;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .cars-grid {
@@ -409,16 +278,6 @@
         }
         
         @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-            }
-            
-            header nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                margin-top: 15px;
-            }
-            
             .filter-form {
                 grid-template-columns: 1fr;
             }
@@ -426,28 +285,12 @@
             .cars-grid {
                 grid-template-columns: 1fr;
             }
-            
-            footer .columns {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
         }
     </style>
 </head>
 <body>
-    <header class="h-light">
-        <div class="container">
-            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
-            <nav>
-                <ul>
-                    <li><a href="index.html">Ballina</a></li>
-                    <li><a href="cars.html">Veturat</a></li>
-                    <li><a href="about.html">Rreth Nesh</a></li>
-                    <li><a href="contact.html">Kontakti</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
 
     <section class="cars-hero">
         <div class="container">
@@ -711,36 +554,8 @@
         </section>
     </div>
 
-    <footer class="f-light" id="contact">
-        <div class="container">
-            <div class="columns">
-                <div class="col-info">
-                    <h3>KoreaDrive.ks</h3>
-                    <p>Makina premium koreane në Prishtinë</p>
-                    <p>Në shërbim të Kosovës që nga 2025</p>
-                </div>
-                
-                <div class="col-contact">
-                    <h3>Na Kontaktoni</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
-                    <p><i class="fas fa-phone"></i> +383 43 809 160</p>
-                    <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
-                </div>
-                
-                <div class="col-social">
-                    <h3>Na Ndiqni</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
 
     <script>
         // Simple price range slider script
@@ -753,6 +568,22 @@
 
         // Initialize the display
         priceOutput.textContent = priceRange.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '€';
+        
+        // Function to load HTML content
+        function loadHTML(url, elementId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading ' + url + ': ', error));
+        }
+
+        // Load header and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHTML('header.html', 'header-placeholder');
+            loadHTML('footer.html', 'footer-placeholder');
+        });
     </script>
 </body>
 </html>
