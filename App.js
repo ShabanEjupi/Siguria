@@ -9,40 +9,41 @@ app.use(express.static(path.join(__dirname)));
 
 // Definimi i rutave për fajlla HTML
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/index.html');
 });
 
 app.get('/cars', (req, res) => {
-  res.sendFile(path.join(__dirname, 'cars.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/cars.html');
 });
 
 app.get('/cars.html', (req, res) => { // Shtuar rrugë alternative
-  res.sendFile(path.join(__dirname, 'cars.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/cars.html');
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'about.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/about.html');
 });
 
 app.get('/about.html', (req, res) => { // Shtuar rrugë alternative
-  res.sendFile(path.join(__dirname, 'about.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/about.html');
+
 });
 
 app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, 'contact.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/contact.html');
 });
 
 app.get('/contact.html', (req, res) => { // Shtuar rrugë alternative
-  res.sendFile(path.join(__dirname, 'contact.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/contact.html');
 });
 
 // Gjithashtu, shtoni një route për header.html dhe footer.html nëse i ngarkoni me AJAX
 app.get('/header.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'header.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/header.html');
 });
 
 app.get('/footer.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'footer.html'));
+    res.sendFile('c:/xampp/htdocs/KoreaPremium/KoreaDrive.ks/footer.html');
 });
 
 // Raportoni 404 për rrugët e tjera
