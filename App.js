@@ -12,25 +12,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Definimi i rutave
 app.get('/', (req, res) => {
-  res.render('pages/index', { 
+  res.render('/index', { 
     title: 'KoreaDrive.ks - Importuesi Juaj i Veturave Koreane në Prishtinë' 
   });
 });
 
 app.get('/cars', (req, res) => {
-  res.render('pages/cars', { 
+  res.render('/cars', { 
     title: 'Veturat Koreane - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë' 
   });
 });
 
 app.get('/about', (req, res) => {
-  res.render('pages/about', { 
+  res.render('/about', { 
     title: 'Rreth nesh - KoreaDrive.ks | Premium Korean Cars in Pristina' 
   });
 });
 
 app.get('/contact', (req, res) => {
-  res.render('pages/contact', { 
+  res.render('/contact', { 
     title: 'Kontakti - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë' 
   });
 });
