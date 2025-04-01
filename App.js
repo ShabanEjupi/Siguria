@@ -4,36 +4,24 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 3000;
 
-// Konfigurimi i EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Shto këtë rresht
+// Konfigurimi për dosjet statike
+app.use(express.static(path.join(__dirname)));
 
-// Konfigurimi i dosjeve statike
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Definimi i rutave
+// Definimi i rutave për fajlla HTML
 app.get('/', (req, res) => {
-  res.render('index', { 
-    title: 'KoreaDrive.ks - Importuesi Juaj i Veturave Koreane në Prishtinë' 
-  });
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/cars', (req, res) => {
-  res.render('cars', { 
-    title: 'Veturat Koreane - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë' 
-  });
+  res.sendFile(path.join(__dirname, 'cars.html'));
 });
 
 app.get('/about', (req, res) => {
-  res.render('about', { 
-    title: 'Rreth nesh - KoreaDrive.ks | Premium Korean Cars in Pristina' 
-  });
+  res.sendFile(path.join(__dirname, 'about.html'));
 });
 
 app.get('/contact', (req, res) => {
-  res.render('contact', { 
-    title: 'Kontakti - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë' 
-  });
+  res.sendFile(path.join(__dirname, 'contact.html'));
 });
 
 // Startimi i serverit
