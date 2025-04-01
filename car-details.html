@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detajet e Veturës - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        /* Stilimi i Përgjithshëm */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Car Details Section */
+        .car-details-section {
+            padding: 50px 0;
+        }
+        
+        .car-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        /* Car Gallery */
+        .car-gallery {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .main-image {
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail-images {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+        }
+        
+        .thumbnail {
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #1a3a7a;
+            transform: scale(1.05);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Car Info */
+        .car-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .car-title {
+            color: #1a3a7a;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .car-price {
+            font-size: 1.8em;
+            color: #e63946;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .price-note {
+            font-size: 0.6em;
+            color: #666;
+            font-weight: normal;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .car-description {
+            margin-bottom: 25px;
+            color: #555;
+        }
+        
+        .car-features {
+            margin-bottom: 30px;
+        }
+        
+        .car-features h3 {
+            color: #1a3a7a;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-item i {
+            color: #1a3a7a;
+            margin-right: 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a3a7a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #152e5f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #1a3a7a;
+            color: #1a3a7a;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f3f8fe;
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1fba58;
+        }
+        
+        /* Specifications Section */
+        .specifications-section {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            color: #1a3a7a;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #1a3a7a;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .specs-table th {
+            background-color: #f3f8fe;
+            text-align: left;
+            font-weight: 600;
+            color: #1a3a7a;
+            width: 30%;
+        }
+        
+        .specs-table tr:last-child th, 
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Similar Cars Section */
+        .similar-cars-section {
+            padding: 60px 0;
+            background-color: #f3f8fe;
+        }
+        
+        .similar-cars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .car-card-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .car-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-card-image img {
+            transform: scale(1.1);
+        }
+        
+        .car-card-details {
+            padding: 20px;
+        }
+        
+        .car-card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .car-card-title h3 {
+            color: #1a3a7a;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        
+        .car-card-price {
+            background-color: #e63946;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .car-card-specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            color: #666;
+            font-size: 0.85em;
+        }
+        
+        .car-card-specs span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-card-specs i {
+            margin-right: 5px;
+            color: #1a3a7a;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .car-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .similar-cars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .similar-cars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <section class="car-details-section">
+        <div class="container">
+            <div class="car-details-grid">
+                <div class="car-gallery">
+                    <div class="main-image">
+                        <img id="main-car-image" src="./assets/img/car6.jpg" alt="BMW 3 Series GT">
+                    </div>
+                    <div class="thumbnail-images">
+                        <div class="thumbnail active" data-img="./assets/img/cars/frontcar6.jpg">
+                            <img src="./assets/img/cars/frontcar6.jpg" alt="BMW 3 Series GT - Front">
+                        </div>
+                        <div class="thumbnail" data-img="./assets/img/car6.jpg">
+                            <img src="./assets/img/car6.jpg" alt="BMW 3 Series GT - Side">
+                        </div>
+                        <div class="thumbnail" data-img="./assets/img/cars/rearcar6.jpg">
+                            <img src="./assets/img/cars/rearcar6.jpg" alt="BMW 3 Series GT - Rear">
+                        </div>
+                        <div class="thumbnail" data-img="./assets/img/cars/interiorcar6.jpg">
+                            <img src="./assets/img/cars/interiorcar6.jpg" alt="BMW 3 Series GT - Interior">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-info">
+                    <h1 class="car-title">BMW 3 Series GT (F34) GT 320d</h1>
+                    <div class="car-price">
+                        €10,500
+                        <span class="price-note">Çmimi përfshin transportin deri në Durrës (+€350 deri në Prishtinë)</span>
+                    </div>
+                    
+                    <p class="car-description">BMW 3 Series Gran Turismo, një version më praktik i sedan-it të famshëm të Serisë 3, me hapësirë më të madhe në kabinë dhe bagazh. I importuar direkt nga Koreja e Jugut, kjo makinë është në gjendje shumë të mirë dhe e gatshme për rrugët e Kosovës.</p>
+                    
+                    <div class="car-features">
+                        <h3>Detajet Kryesore</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>15/01 type (2015)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>170,170 km</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Dizel</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Transmision Automatik</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-horse-head"></i>
+                                <span>184 hp</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-palette"></i>
+                                <span>Ngjyrë e Bardhë</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-car-side"></i>
+                                <span>Gran Turismo</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-car-crash"></i>
+                                <span>Pa dëmtime</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <a href="contact.html?car=6" class="btn">Pyetni për këtë veturë</a>
+                        <a href="https://wa.me/38343809160?text=Jam%20i%20interesuar%20për%20veturën%20BMW%203%20Series%20GT%20që%20është%20në%20faqen%20tuaj" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Kontaktoni në WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specifications-section">
+        <div class="container">
+            <h2 class="section-title">Specifikimet e Detajuara</h2>
+            <table class="specs-table">
+                <tr>
+                    <th>Modeli</th>
+                    <td>BMW 3 Series Gran Turismo (F34)</td>
+                </tr>
+                <tr>
+                    <th>Viti prodhimit</th>
+                    <td>15/01 type (2015, Janar)</td>
+                </tr>
+                <tr>
+                    <th>Kilometrazhi</th>
+                    <td>170,170 km</td>
+                </tr>
+                <tr>
+                    <th>Karburanti</th>
+                    <td>Dizel</td>
+                </tr>
+                <tr>
+                    <th>Motor</th>
+                    <td>2.0L 4-cilindra Turbo Dizel</td>
+                </tr>
+                <tr>
+                    <th>Fuqia</th>
+                    <td>184 hp</td>
+                </tr>
+                <tr>
+                    <th>Transmisioni</th>
+                    <td>Automatik</td>
+                </tr>
+                <tr>
+                    <th>Tërheqja</th>
+                    <td>Tërheqje e pasme</td>
+                </tr>
+                <tr>
+                    <th>Ngjyra</th>
+                    <td>E Bardhë</td>
+                </tr>
+                <tr>
+                    <th>Interiori</th>
+                    <td>Lëkurë e zezë, detaje alumini</td>
+                </tr>
+                <tr>
+                    <th>Kapaciteti i bagazhit</th>
+                    <td>520 litra</td>
+                </tr>
+                <tr>
+                    <th>Konsumi mesatar</th>
+                    <td>5.7L/100km</td>
+                </tr>
+                <tr>
+                    <th>Numri i dyerve</th>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <th>Numri i ulëseve</th>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <th>Historiku i servisimit</th>
+                    <td>I disponueshëm, servisuar rregullisht</td>
+                </tr>
+                <tr>
+                    <th>Çmimi i transportit</th>
+                    <td>€10,500 deri në Durrës, +€350 deri në Prishtinë</td>
+                </tr>
+                <tr>
+                    <th>Disponueshmëria</th>
+                    <td>Menjëherë pas konfirmimit</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="similar-cars-section">
+        <div class="container">
+            <h2 class="section-title">Vetura të Ngjashme</h2>
+            <div class="similar-cars-grid">
+                <div class="car-card">
+                    <div class="car-card-image">
+                        <img src="./assets/img/car1.jpg" alt="BMW 5 Series">
+                    </div>
+                    <div class="car-card-details">
+                        <div class="car-card-title">
+                            <h3>BMW 5 Series (F10)</h3>
+                            <span class="car-card-price">€10,820</span>
+                        </div>
+                        <div class="car-card-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 15/06 type</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 178,064 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        </div>
+                        <a href="car-details.html?id=1" class="btn" style="width: 100%; margin-top: 10px;">Detajet</a>
+                    </div>
+                </div>
+                
+                <div class="car-card">
+                    <div class="car-card-image">
+                        <img src="./assets/img/car5.jpg" alt="BMW 3 Series">
+                    </div>
+                    <div class="car-card-details">
+                        <div class="car-card-title">
+                            <h3>BMW 3 Series (F30) 320d</h3>
+                            <span class="car-card-price">€9,300</span>
+                        </div>
+                        <div class="car-card-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 15/05 type</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 147,104 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Dizel</span>
+                        </div>
+                        <a href="car-details.html?id=5" class="btn" style="width: 100%; margin-top: 10px;">Detajet</a>
+                    </div>
+                </div>
+                
+                <div class="car-card">
+                    <div class="car-card-image">
+                        <img src="./assets/img/car2.jpg" alt="BMW 528i">
+                    </div>
+                    <div class="car-card-details">
+                        <div class="car-card-title">
+                            <h3>BMW 5 Series (F10) 528i</h3>
+                            <span class="car-card-price">€11,500</span>
+                        </div>
+                        <div class="car-card-specs">
+                            <span><i class="fas fa-calendar-alt"></i> 15/05 type</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 176,000 km</span>
+                            <span><i class="fas fa-gas-pump"></i> Benzinë</span>
+                        </div>
+                        <a href="car-details.html?id=2" class="btn" style="width: 100%; margin-top: 10px;">Detajet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Gallery functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('main-car-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Update main image
+                    mainImage.src = this.getAttribute('data-img');
+                    
+                    // Update active class
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Get car ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            
+            // In a real implementation, you would load car data based on the ID
+            console.log('Loading car with ID:', carId);
+            
+            // Load header and footer
+            loadHTML('header.html', 'header-placeholder');
+            loadHTML('footer.html', 'footer-placeholder');
+        });
+        
+        // Function to load HTML content
+        function loadHTML(url, elementId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading ' + url + ': ', error));
+        }
+    </script>
+</body>
+</html>
