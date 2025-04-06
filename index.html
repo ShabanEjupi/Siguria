@@ -38,6 +38,18 @@
             text-align: center;
         }
         
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .hero-content {
+            flex: 1;
+            text-align: left;
+        }
+        
         .hero h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
@@ -78,6 +90,20 @@
         .btn-outline:hover {
             background-color: white;
             color: #1a3a7a;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 2s;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
         
         /* Featured Cars Section */
@@ -314,6 +340,21 @@
             .cars-grid, .features-grid, .testimonials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                text-align: center;
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+                margin-bottom: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -357,12 +398,17 @@
     <div id="header-placeholder"></div>
     
     <section class="hero">
-        <div class="container">
-            <h1>Veturat Koreane të Cilësisë së Lartë në Prishtinë</h1>
-            <p>Importim i drejtpërdrejtë nga Koreja e Jugut me standardet më të larta të cilësisë dhe çmimet më konkurruese në treg</p>
-            <div class="hero-buttons">
-                <a href="cars.html" class="btn">Shiko Veturat</a>
-                <a href="contact.html" class="btn btn-outline">Na Kontaktoni</a>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Veturat Koreane të Cilësisë së Lartë në Prishtinë</h1>
+                <p>Importim i drejtpërdrejtë nga Koreja e Jugut me standardet më të larta të cilësisë dhe çmimet më konkurruese në treg</p>
+                <div class="hero-buttons">
+                    <a href="cars.html" class="btn">Shiko Veturat</a>
+                    <a href="contact.html" class="btn btn-outline">Na Kontaktoni</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="./assets/img/hero-car.png" alt="Premium Korean Car">
             </div>
         </div>
     </section>
