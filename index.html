@@ -20,6 +20,8 @@
             background-color: #ffffff; /* Change from gray to white */
             color: #333;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
         
         .container {
@@ -34,7 +36,7 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 150px 0;
+            padding: 80px 0; /* Reduced from 150px 0 */
             text-align: center;
         }
         
@@ -512,6 +514,20 @@
             .car-details h3 {
                 font-size: 1.2em;
             }
+        }
+
+        /* Make sure header is properly positioned without extra space */
+        .h-light {
+            padding: 10px 0; /* Reduced from 15px */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Fix potential spacing in header placeholder */
+        #header-placeholder {
+            line-height: 0;
+            font-size: 0;
         }
     </style>
 </head>
