@@ -22,16 +22,35 @@
 }
 
 body {
-    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: var(--secondary);
+    line-height: 1.3;
+}
+
+/* Font size standardization */
+h1 {
+    font-size: 2.8em;
+}
+
+h2 {
+    font-size: 2.2em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+p {
+    font-size: 1em;
 }
 
 .container {
@@ -76,10 +95,26 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+/* Additional button styles */
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    border-color: #25D366;
+}
+
+.btn-whatsapp:hover {
+    background-color: #20ba5a;
+    border-color: #20ba5a;
+}
+
 /* Section Styling */
 .section-title {
     color: var(--secondary);
-    font-size: 2.5em;
+    font-size: 2.2em;
     margin-bottom: 20px;
     text-align: center;
     position: relative;
@@ -105,7 +140,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Responsive Elements */
 @media (max-width: 992px) {
     .section-title {
-        font-size: 2.2em;
+        font-size: 2em;
+    }
+    
+    h1 {
+        font-size: 2.5em;
     }
 }
 
@@ -113,5 +152,23 @@ h1, h2, h3, h4, h5, h6 {
     .btn {
         width: 100%;
         margin: 8px 0;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    h2 {
+        font-size: 1.6em;
     }
 }
