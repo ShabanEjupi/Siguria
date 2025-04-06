@@ -17,7 +17,7 @@
         }
         
         body {
-            background-color: #f7f9fc;
+            background-color: #ffffff; /* Change from gray to white */
             color: #333;
             line-height: 1.6;
         }
@@ -93,7 +93,7 @@
         }
         
         .hero-image {
-            flex: 1;
+            flex: 1.2; /* Give more space to the image */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,9 +101,9 @@
         }
         
         .hero-image img {
-            max-width: 100%;
+            max-width: 120%; /* Make hero image larger */
             height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4)); /* Stronger shadow */
         }
         
         /* Featured Cars Section */
@@ -113,7 +113,7 @@
         }
         
         .section-title {
-            color: #1a3a7a;
+            color: #0e2a6b; /* Slightly deeper blue */
             font-size: 2.2em;
             margin-bottom: 50px;
             text-align: center;
@@ -142,7 +142,8 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+            border: 1px solid #f0f0f0; /* Subtle border */
             transition: transform 0.3s ease;
         }
         
@@ -151,7 +152,7 @@
         }
         
         .car-image {
-            height: 220px;
+            height: 280px; /* Increase from 220px */
             overflow: hidden;
         }
         
@@ -171,7 +172,7 @@
         }
         
         .car-details h3 {
-            color: #1a3a7a;
+            color: #0e2a6b; /* Slightly deeper blue */
             margin-bottom: 10px;
             font-size: 1.4em;
         }
@@ -222,7 +223,8 @@
             padding: 30px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+            border: 1px solid #f0f0f0; /* Subtle border */
             transition: all 0.3s ease;
         }
         
@@ -238,7 +240,7 @@
         }
         
         .feature-card h3 {
-            color: #1a3a7a;
+            color: #0e2a6b; /* Slightly deeper blue */
             margin-bottom: 15px;
         }
         
@@ -260,6 +262,8 @@
             padding: 30px;
             border-radius: 5px;
             position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+            border: 1px solid #f0f0f0; /* Subtle border */
         }
         
         .testimonial-card::before {
@@ -390,6 +394,14 @@
                 margin: 10px auto;
                 max-width: 300px;
             }
+
+            .hero-image {
+                max-width: 90%; /* Larger image on mobile (was 70%) */
+            }
+            
+            .car-image {
+                height: 220px; /* Still large but proportional on mobile */
+            }
         }
 
         /* Add these styles to your existing CSS to improve mobile responsiveness */
@@ -412,7 +424,7 @@
             
             .hero-image {
                 margin-bottom: 15px;
-                max-width: 70%;
+                max-width: 90%; /* Larger image on mobile (was 70%) */
                 margin-left: auto;
                 margin-right: auto;
             }
