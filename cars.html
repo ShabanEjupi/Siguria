@@ -6,6 +6,9 @@
     <title>Veturat Koreane - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="carFilter.js"></script>
     
     <style>
@@ -31,7 +34,7 @@
         
         /* Cars Hero Section */
         .cars-hero {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/img/cars-hero.jpg');
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('./assets/img/cars-hero.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -42,6 +45,7 @@
         .cars-hero h1 {
             font-size: 2.8em;
             margin-bottom: 15px;
+            color: white;
         }
         
         .cars-hero p {
@@ -52,11 +56,11 @@
         
         /* Filter Section */
         .filter-section {
-            background-color: white;
+            background-color: var(--background);
             padding: 30px;
             margin-top: -30px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             position: relative;
             z-index: 10;
         }
@@ -75,7 +79,7 @@
         .filter-group label {
             font-weight: 600;
             margin-bottom: 8px;
-            color: #1a3a7a;
+            color: var(--secondary);
         }
         
         .filter-group select, 
@@ -83,7 +87,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: var(--background-light);
         }
         
         .filter-buttons {
@@ -151,15 +155,17 @@
         }
         
         .car-card {
-            background-color: white;
+            background-color: var(--background);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             transition: transform 0.3s ease;
+            border: 1px solid #eee;
         }
         
         .car-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .car-image {
@@ -190,13 +196,13 @@
         }
         
         .car-title h3 {
-            color: #1a3a7a;
+            color: var(--secondary);
             font-size: 1.3em;
             margin: 0;
         }
         
         .car-price {
-            background-color: #1a3a7a;
+            background-color: var(--primary);
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
@@ -208,7 +214,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-bottom: 15px;
-            color: #666;
+            color: var(--text-light);
             font-size: 0.9em;
         }
         
@@ -220,7 +226,7 @@
         }
         
         .car-spec i {
-            color: #1a3a7a;
+            color: var(--primary);
             font-size: 1.2em;
             margin-bottom: 5px;
         }
@@ -228,7 +234,7 @@
         .car-description {
             margin-bottom: 20px;
             font-size: 0.95em;
-            color: #555;
+            color: var(--text-light);
         }
         
         .car-actions {
@@ -253,20 +259,20 @@
             padding: 8px 15px;
             margin: 0 5px;
             border-radius: 5px;
-            background-color: white;
-            color: #1a3a7a;
+            background-color: var(--background);
+            color: var(--primary);
             text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: var(--light-shadow);
             transition: all 0.3s ease;
         }
         
         .pagination a.active {
-            background-color: #1a3a7a;
+            background-color: var(--primary);
             color: white;
         }
         
         .pagination a:hover {
-            background-color: #f3f8fe;
+            background-color: var(--background-light);
             transform: translateY(-2px);
         }
         
