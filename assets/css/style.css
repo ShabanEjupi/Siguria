@@ -1,0 +1,117 @@
+/* Modern Color Palette */
+:root {
+    --primary: #e74c3c;          /* Red */
+    --primary-dark: #c0392b;     /* Dark Red */
+    --secondary: #2c3e50;        /* Dark Blue */
+    --secondary-light: #34495e;  /* Light Blue */
+    --text: #2c3e50;             /* Dark Blue for Text */
+    --text-light: #7f8c8d;       /* Gray for Secondary Text */
+    --background: #ffffff;        /* White Background */
+    --background-light: #f9f9f9;  /* Light Gray Background */
+    --success: #2ecc71;           /* Green */
+    --warning: #f39c12;           /* Orange */
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Section Styling */
+.section-title {
+    color: var(--secondary);
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+}
+
+/* Card Styling */
+.card {
+    background: var(--background);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Responsive Elements */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        margin: 8px 0;
+    }
+}

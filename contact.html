@@ -6,6 +6,9 @@
     <title>Kontakti - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* Stilimi i Përgjithshëm */
@@ -30,7 +33,7 @@
         
         /* Contact Hero Section */
         .contact-hero {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/img/contact-hero.jpg');
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('./assets/img/contact-hero.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -41,6 +44,7 @@
         .contact-hero h1 {
             font-size: 2.8em;
             margin-bottom: 15px;
+            color: white;
         }
         
         .contact-hero p {
@@ -61,10 +65,11 @@
         }
         
         .section-title {
-            color: #1a3a7a;
+            color: var(--secondary);
             font-size: 2em;
             margin-bottom: 30px;
             position: relative;
+            text-align: left;
         }
         
         .section-title::after {
@@ -74,7 +79,7 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background-color: #1a3a7a;
+            background-color: var(--primary);
         }
         
         /* Contact Info */
@@ -89,7 +94,7 @@
         }
         
         .contact-icon {
-            background-color: #1a3a7a;
+            background-color: var(--primary);
             color: white;
             width: 50px;
             height: 50px;
@@ -102,13 +107,13 @@
         }
         
         .contact-text h3 {
-            color: #1a3a7a;
+            color: var(--secondary);
             margin-bottom: 5px;
             font-size: 1.2em;
         }
         
         .contact-text p {
-            color: #555;
+            color: var(--text-light);
         }
         
         /* Business Hours */
@@ -129,15 +134,15 @@
         
         .day {
             font-weight: 600;
-            color: #1a3a7a;
+            color: var(--secondary);
         }
         
         /* Contact Form */
         .contact-form {
-            background-color: white;
+            background-color: var(--background);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
         }
         
         .form-group {
@@ -148,7 +153,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #1a3a7a;
+            color: var(--secondary);
         }
         
         .form-control {
@@ -156,7 +161,7 @@
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: var(--background-light);
             font-size: 1em;
         }
         
@@ -192,7 +197,21 @@
             height: 450px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* Location Note */
+        .location-note {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: var(--background-light);
+            border-left: 4px solid var(--primary);
+            border-radius: 5px;
+        }
+        
+        .location-note h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
         }
         
         /* Responsive Design */
@@ -270,8 +289,8 @@
                         </div>
                     </div>
                     
-                    <div class="location-note" style="margin-bottom: 30px; padding: 15px; background-color: #f3f8fe; border-left: 4px solid #1a3a7a; border-radius: 5px;">
-                        <h3 style="color: #1a3a7a; margin-bottom: 10px;">Zyret tona të reja</h3>
+                    <div class="location-note">
+                        <h3>Zyret tona të reja</h3>
                         <p>Aktualisht jemi në proces të hapjes së zyrave të reja në objektin "Dominant" i cili është duke u renovuar. Hapja zyrtare pritet së shpejti. Ndërkohë, mund të na kontaktoni përmes telefonit, emailit ose formës së kontaktit.</p>
                     </div>
                     

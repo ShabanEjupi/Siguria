@@ -6,28 +6,10 @@
     <title>Detajet e Veturës - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Stilimi i Përgjithshëm */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f7f9fc;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
         /* Car Details Section */
         .car-details-section {
             padding: 50px 0;
@@ -41,10 +23,10 @@
         
         /* Car Gallery */
         .car-gallery {
-            background-color: white;
+            background-color: var(--background);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
         }
         
         .main-image {
@@ -75,7 +57,7 @@
         }
         
         .thumbnail:hover, .thumbnail.active {
-            border-color: #1a3a7a;
+            border-color: var(--primary);
             transform: scale(1.05);
         }
         
@@ -87,21 +69,21 @@
         
         /* Car Info */
         .car-info {
-            background-color: white;
+            background-color: var(--background);
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
         }
         
         .car-title {
-            color: #1a3a7a;
+            color: var(--secondary);
             font-size: 2em;
             margin-bottom: 10px;
         }
         
         .car-price {
             font-size: 1.8em;
-            color: #e63946;
+            color: var(--primary);
             font-weight: bold;
             margin-bottom: 20px;
             border-bottom: 1px solid #eee;
@@ -110,7 +92,7 @@
         
         .price-note {
             font-size: 0.6em;
-            color: #666;
+            color: var(--text-light);
             font-weight: normal;
             display: block;
             margin-top: 5px;
@@ -118,7 +100,7 @@
         
         .car-description {
             margin-bottom: 25px;
-            color: #555;
+            color: var(--text);
         }
         
         .car-features {
@@ -126,9 +108,9 @@
         }
         
         .car-features h3 {
-            color: #1a3a7a;
+            color: var(--secondary);
             margin-bottom: 15px;
-            font-size: 1.4em;
+            font-size: a1.4em;
         }
         
         .features-grid {
@@ -143,7 +125,7 @@
         }
         
         .feature-item i {
-            color: #1a3a7a;
+            color: var(--primary);
             margin-right: 10px;
             min-width: 20px;
             text-align: center;
@@ -155,41 +137,14 @@
             margin-top: 30px;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: #1a3a7a;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #152e5f;
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid #1a3a7a;
-            color: #1a3a7a;
-        }
-        
-        .btn-outline:hover {
-            background-color: #f3f8fe;
-        }
-        
         .btn-whatsapp {
             background-color: #25D366;
+            border-color: #25D366;
         }
         
         .btn-whatsapp:hover {
-            background-color: #1fba58;
+            background-color: #20ba5a;
+            border-color: #20ba5a;
         }
         
         /* Specifications Section */
@@ -198,28 +153,11 @@
             margin-bottom: 60px;
         }
         
-        .section-title {
-            color: #1a3a7a;
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: #1a3a7a;
-        }
-        
         .specs-table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--background);
+            box-shadow: var(--card-shadow);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -230,10 +168,10 @@
         }
         
         .specs-table th {
-            background-color: #f3f8fe;
+            background-color: var(--background-light);
             text-align: left;
             font-weight: 600;
-            color: #1a3a7a;
+            color: var(--secondary);
             width: 30%;
         }
         
@@ -245,7 +183,7 @@
         /* Similar Cars Section */
         .similar-cars-section {
             padding: 60px 0;
-            background-color: #f3f8fe;
+            background-color: var(--background-light);
         }
         
         .similar-cars-grid {
@@ -255,15 +193,16 @@
         }
         
         .car-card {
-            background: white;
+            background: var(--background);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             transition: transform 0.3s ease;
         }
         
         .car-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .car-card-image {
@@ -294,13 +233,13 @@
         }
         
         .car-card-title h3 {
-            color: #1a3a7a;
+            color: var(--secondary);
             font-size: 1.2em;
             margin: 0;
         }
         
         .car-card-price {
-            background-color: #e63946;
+            background-color: var(--primary);
             color: white;
             padding: 3px 8px;
             border-radius: 5px;
@@ -312,7 +251,7 @@
             display: flex;
             justify-content: space-between;
             margin: 10px 0;
-            color: #666;
+            color: var(--text-light);
             font-size: 0.85em;
         }
         
@@ -323,7 +262,7 @@
         
         .car-card-specs i {
             margin-right: 5px;
-            color: #1a3a7a;
+            color: var(--primary);
         }
         
         /* Responsive Design */
@@ -348,10 +287,6 @@
             
             .actions {
                 flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
             }
         }
     </style>
