@@ -1,4 +1,5 @@
-    <footer class="f-light" id="contact">
+<footer class="f-light" id="contact">
+    <div class="footer-top">
         <div class="container">
             <div class="columns">
                 <div class="col-info">
@@ -9,119 +10,242 @@
                 
                 <div class="col-contact">
                     <h3>Na Kontaktoni</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
-                    <p><i class="fas fa-phone"></i> +383 43 809 160</p>
-                    <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</li>
+                        <li><i class="fas fa-phone"></i> +383 43 809 160</li>
+                        <li><i class="fas fa-envelope"></i> etinup1@gmail.com</li>
+                    </ul>
                 </div>
                 
                 <div class="col-social">
                     <h3>Na Ndiqni</h3>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/koreadrive.ks" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/koreadrive.ks" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@koreadriveKS" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Abonohuni për lajme</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Email juaj">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 <a href="https://shabanejupi.engineer/">Shaban Ejupi</a>. Të gjitha të drejtat e rezervuara.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 <a href="https://shabanejupi.engineer/">Shaban Ejupi</a>. Të gjitha të drejtat e rezervuara.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privatësia</a>
+                <a href="terms.html">Kushtet e Përdorimit</a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <style>
-        /* Stilimi i Footer-it */
-        .f-light {
-            background-color: #1a3a7a;
-            color: white;
-            padding: 60px 0 20px;
-            margin-top: 50px;
-        }
-        
-        footer .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
+<style>
+    /* Modern Footer Styling */
+    .f-light {
+        background-color: var(--secondary);
+        color: rgba(255, 255, 255, 0.8);
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .footer-top {
+        padding: 80px 0 40px;
+    }
+    
+    footer .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    footer .columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        margin-bottom: 30px;
+    }
+    
+    footer h3 {
+        color: white;
+        font-size: 1.4em;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    footer h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 3px;
+        background-color: var(--primary);
+    }
+    
+    footer p {
+        margin-bottom: 15px;
+        line-height: 1.7;
+        font-size: 0.95em;
+    }
+    
+    .contact-list {
+        list-style: none;
+    }
+    
+    .contact-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        font-size: 0.95em;
+    }
+    
+    .contact-list i {
+        margin-right: 15px;
+        min-width: 20px;
+        color: var(--primary);
+    }
+    
+    .social-icons {
+        display: flex;
+        gap: 15px;
+        margin: 20px 0;
+    }
+    
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: all 0.3s ease;
+        font-size: 1.1em;
+    }
+    
+    .social-icons a:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-5px);
+    }
+    
+    .newsletter h4 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .newsletter-form {
+        display: flex;
+        height: 45px;
+    }
+    
+    .newsletter-form input {
+        flex: 1;
+        padding: 0 15px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 4px 0 0 4px;
+    }
+    
+    .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .newsletter-form button {
+        width: 45px;
+        background-color: var(--primary);
+        border: none;
+        color: white;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .newsletter-form button:hover {
+        background-color: var(--primary-dark);
+    }
+    
+    .footer-bottom {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-bottom .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .footer-bottom p {
+        margin-bottom: 0;
+        font-size: 0.85em;
+    }
+    
+    .footer-bottom a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-bottom a:hover {
+        color: white;
+    }
+    
+    .footer-links {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.85em;
+    }
+    
+    @media (max-width: 992px) {
         footer .columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .col-social {
+            grid-column: span 2;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        footer .columns {
+            grid-template-columns: 1fr;
             gap: 40px;
-            margin-bottom: 50px;
         }
         
-        footer h3 {
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+        .col-social {
+            grid-column: span 1;
         }
         
-        footer h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #fff;
+        .footer-top {
+            padding: 60px 0 30px;
         }
         
-        footer p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        footer .col-contact p {
-            display: flex;
-            align-items: center;
-        }
-        
-        footer .col-contact i {
-            margin-right: 15px;
-            min-width: 20px;
-            color: #c1d3f9;
-        }
-        
-        footer .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        footer .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        footer .social-icons a:hover {
-            background-color: white;
-            color: #1a3a7a;
-            transform: translateY(-3px);
-        }
-        
-        footer .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            color: #c1d3f9;
+        .footer-bottom .container {
+            flex-direction: column;
             text-align: center;
-            font-size: 0.9em;
+            gap: 15px;
         }
-        
-        @media (max-width: 768px) {
-            footer .columns {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-    </style>
+    }
+</style>
 </body>
 </html>
