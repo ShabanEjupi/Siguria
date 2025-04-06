@@ -8,18 +8,100 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
+        :root {
+            /* Modern color palette */
+            --primary: #2563eb;       /* Vibrant blue instead of #1a3a7a */
+            --primary-dark: #1e40af;  /* Darker blue for hover states */
+            --secondary: #f97316;     /* Vibrant orange accent color */
+            --text-dark: #1e293b;     /* Dark blue-gray for text */
+            --text-light: #64748b;    /* Medium gray for secondary text */
+            --light-bg: #f8fafc;      /* Very light blue-gray background */
+            --white: #ffffff;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Apply the new colors */
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        .h-light {
+            background-color: var(--white);
+            padding: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            border-radius: 8px;
+            padding: 12px 24px;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        /* Modern card styling */
+        .car-card, .feature-card, .testimonial-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+
+        .car-card:hover, .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Replace grey backgrounds */
+        .why-us-section {
+            background-color: var(--light-bg);
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Logo link style */
+        .logo-link {
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer modernization */
+        .f-light {
+            background-color: var(--primary);
+        }
+
         /* Stilimi i Përgjithshëm */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #ffffff; /* Change from gray to white */
-            color: #333;
-            line-height: 1.6;
         }
         
         .container {
@@ -61,35 +143,6 @@
             max-width: 800px;
             margin: 0 auto 30px;
             animation: fadeIn 2s;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #1a3a7a;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid #1a3a7a;
-            margin: 0 10px;
-            animation: fadeIn 2.5s;
-        }
-        
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: #1a3a7a;
         }
         
         .hero-image {
@@ -136,19 +189,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 20px;
-        }
-        
-        .car-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-            border: 1px solid #f0f0f0; /* Subtle border */
-            transition: transform 0.3s ease;
-        }
-        
-        .car-card:hover {
-            transform: translateY(-10px);
         }
         
         .car-image {
@@ -207,41 +247,10 @@
         }
         
         /* Why Choose Us Section */
-        .why-us-section {
-            background-color: #f3f8fe;
-            padding: 80px 0;
-        }
-        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-            border: 1px solid #f0f0f0; /* Subtle border */
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .feature-icon {
-            font-size: 3em;
-            color: #1a3a7a;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            color: #0e2a6b; /* Slightly deeper blue */
-            margin-bottom: 15px;
         }
         
         /* Testimonials Section */
@@ -254,16 +263,6 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-        }
-        
-        .testimonial-card {
-            background: #f9f9f9;
-            border-left: 4px solid #1a3a7a;
-            padding: 30px;
-            border-radius: 5px;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-            border: 1px solid #f0f0f0; /* Subtle border */
         }
         
         .testimonial-card::before {
@@ -492,6 +491,46 @@
             
             .testimonial-card::before {
                 font-size: 3em;
+            }
+        }
+
+        /* Enhanced mobile experience */
+        @media (max-width: 768px) {
+            /* Reduce spacing at top */
+            .hero {
+                padding: 60px 0;
+            }
+            
+            /* Larger touch targets for mobile */
+            .btn {
+                padding: 14px 24px;
+                margin: 8px 0;
+            }
+            
+            /* Improved header for mobile */
+            .h-light {
+                padding: 8px 0;
+            }
+            
+            .header-image {
+                height: 40px;
+            }
+            
+            /* Better card spacing */
+            .car-card, .feature-card {
+                margin-bottom: 25px;
+            }
+            
+            /* Full-width buttons on mobile */
+            .car-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .car-actions .btn {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
