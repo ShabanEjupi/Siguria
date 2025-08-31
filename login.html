@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qasja - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
+  <link rel="stylesheet" href="assets/css/style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="carFilter.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    #auth-links {
+      display: flex; 
+      gap: 20px; 
+    }
+
+    #dashboard-links {
+      display: none; 
+      gap: 20px;
+    }
+    
+    .auth-section {
+      padding: 80px 0;
+      background-color: #f3f8fe; 
+      text-align: center;
+    }
+
+    .auth-section h2 {
+      font-size: 2.5em;
+      color: #1a3a7a;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .auth-section form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .auth-section form input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+    }
+
+    .auth-section form input:focus {
+      border-color: #1a3a7a;
+      outline: none;
+      background-color: #fff;
+    }
+
+    .auth-section form button {
+      width: 100%;
+      padding: 14px;
+      background-color: #1a3a7a;
+      color: white;
+      border: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .auth-section form button:hover {
+      background-color: #2c5cbc;
+    }
+
+    .auth-section .redirect-link {
+      margin-top: 20px;
+      font-size: 1em;
+      color: #555;
+    }
+
+    .auth-section .redirect-link a {
+      color: #1a3a7a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .popup1 {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.5s ease-out;
+      z-index: 1000;
+    }
+
+    .contact-form {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      max-width: 90%;
+      z-index: 1000;
+    }
+
+    .featured-cars {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .car-card {
+      width: 30%;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    .car-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .car-info {
+      padding: 15px;
+    }
+
+    .car-info h3 {
+      margin: 0 0 10px 0;
+      color: #1a3a7a;
+    }
+
+    .car-info p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .car-price {
+      font-weight: bold;
+      color: #e63946;
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    
+    /* Stilimi i Header-it */
+    .h-light {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 0;
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-image {
+      height: 50px;
+      width: auto;
+    }
+    
+    header nav ul {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+    
+    header nav ul li {
+      margin: 0 10px;
+    }
+    
+    header nav ul li a {
+      color: #1a3a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05em;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    header nav ul li a:hover {
+      background-color: #f3f8fe;
+      color: #1a3a7a;
+    }
+    
+    /* Footer */
+    .f-light {
+      background-color: #1a3a7a;
+      color: white;
+      padding: 60px 0 20px;
+      margin-top: 50px;
+    }
+    
+    footer .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    footer .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    
+    footer h3 {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #fff;
+    }
+    
+    footer p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    footer .col-contact p {
+      display: flex;
+      align-items: center;
+    }
+    
+    footer .col-contact i {
+      margin-right: 15px;
+      min-width: 20px;
+      color: #c1d3f9;
+    }
+    
+    footer .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    footer .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    footer .social-icons a:hover {
+      background-color: white;
+      color: #1a3a7a;
+      transform: translateY(-3px);
+    }
+    
+    footer .copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+      .car-card {
+        width: 100%;
+      }
+      
+      header .container {
+        flex-direction: column;
+      }
+      
+      header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 15px;
+      }
+      
+      footer .columns {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="h-light">
+    <div class="container">
+      <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive.ks" class="header-image" />
+      <nav>
+        <ul>
+          <li><a href="index.html">Ballina</a></li>
+          <li><a href="cars.html">Veturat</a></li>
+          <li><a href="about.html">Rreth Nesh</a></li>
+          <li><a href="contact.html">Kontakti</a></li>
+          <div id="auth-links">
+            <li><a href="login.html">Qasja</a></li>
+            <li><a href="register.html">Regjistrohu</a></li>
+          </div>
+          <div id="dashboard-links" style="display: none;">
+            <li><a href="dashboard.html">Llogaria Ime</a></li>
+            <li><a href="#" id="logout-link">Dil</a></li>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="container">
+      <h2>Qasuni në Llogarinë Tuaj</h2>
+      <form id="login-form">
+        <input type="email" id="email" name="email" placeholder="Adresa Elektronike" required>
+        <input type="password" id="password" name="password" placeholder="Fjalëkalimi" required>
+        <button type="submit">Qasja</button>
+      </form>
+      <div class="redirect-link">
+        <p>Nuk keni llogari? <a href="register.html">Regjistrohuni tani</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2 class="text-center" style="margin: 40px 0; color: #1a3a7a;">Veturat Koreane të Zgjedhura</h2>
+    <div class="featured-cars">
+      <div class="car-card">
+        <img src="./assets/img/cars/genesis-g80.jpg" alt="Genesis G80">
+        <div class="car-info">
+          <h3>Genesis G80</h3>
+          <p>Viti: 2022</p>
+          <p>Kilometrazhi: 15,000 km</p>
+          <p>Motori: 2.5L Turbo</p>
+          <p class="car-price">€38,000</p>
+        </div>
+      </div>
+      
+      <div class="car-card">
+        <img src="./assets/img/cars/hyundai-tucson.jpg" alt="Hyundai Tucson">
+        <div class="car-info">
+          <h3>Hyundai Tucson</h3>
+          <p>Viti: 2021</p>
+          <p>Kilometrazhi: 32,000 km</p>
+          <p>Motori: 1.6L Hybrid</p>
+          <p class="car-price">€23,840</p>
+        </div>
+      </div>
+      
+      <div class="car-card">
+        <img src="./assets/img/cars/kia-k5.jpg" alt="Kia K5">
+        <div class="car-info">
+          <h3>Kia K5</h3>
+          <p>Viti: 2022</p>
+          <p>Kilometrazhi: 18,500 km</p>
+          <p>Motori: 1.6L Turbo</p>
+          <p class="car-price">€20,720</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="success-popup" class="popup1">
+    <div class="popup1-content">
+      <p>Qasja me sukses!</p>
+    </div>
+  </div>
+
+  <footer class="f-light" id="contact">
+    <div class="container">
+      <div class="columns">
+        <div class="col-info">
+          <h3>KoreaDrive.ks</h3>
+          <p>Makina premium koreane në Prishtinë</p>
+          <p>Në shërbim të Kosovës që nga 2025</p>
+        </div>
+        
+        <div class="col-contact">
+          <h3>Na Kontaktoni</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Rr. Zejnel Salihu, Prishtinë</p>
+          <p><i class="fas fa-phone"></i> +383 45 601 379</p>
+          <p><i class="fas fa-envelope"></i> etinup1@gmail.com</p>
+        </div>
+        
+        <div class="col-social">
+          <h3>Na Ndiqni</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/koreadrive.ks"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/koreadrive.ks"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@koreadriveKS"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 KoreaDrive.ks. Të gjitha të drejtat e rezervuara.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="App.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+</body>
+</html>
