@@ -1,31 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KoreaDrive.ks - Your Korean Car Dealer</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-</head>
-<body>
-    <header class="h-light">
-        <div class="container">
-            <img src="./assets/img/koreadrive-logo.png" alt="KoreaDrive" class="header-image" />
-        </div>
-    </header>
+/* CSS Variables */
+:root {
+    /* Primary Colors */
+    --primary: #1976D2;
+    --primary-light: #42A5F5;
+    --primary-dark: #1565C0;
+    --primary-darker: #0D47A1;
     
-    <main class="bg-light">
-        <div class="container">
-            <h1>Welcome to KoreaDrive.ks</h1>
-            <p>Your trusted source for Korean cars in Pristina.</p>
-        </div>
-    </main>
-
-    <footer class="f-light" id="contact">
-        <div class="container">
-            <p>&copy; 2023 KoreaDrive.ks. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
+    /* Secondary Colors */
+    --secondary: #FFA726;
+    --secondary-light: #FFB74D;
+    --secondary-dark: #FF9800;
+    
+    /* Accent Colors */
+    --accent: #FF5722;
+    --accent-light: #FF7043;
+    --accent-dark: #E64A19;
+    
+    /* Status Colors */
+    --success: #4CAF50;
+    --success-light: #66BB6A;
+    --success-dark: #388E3C;
+    
+    --warning: #FF9800;
+    --warning-light: #FFB74D;
+    --warning-dark: #F57C00;
+    
+    --error: #F44336;
+    --error-light: #EF5350;
+    --error-dark: #D32F2F;
+    
+    --info: #2196F3;
+    --info-light: #42A5F5;
+    --info-dark: #1976D2;
+    
+    /* Text Colors */
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --text-hint: #BDBDBD;
+    --text-disabled: #9E9E9E;
+    --text-white: #FFFFFF;
+    
+    /* Background Colors */
+    --background: #FAFAFA;
+    --background-paper: #FFFFFF;
+    --background-default: #F5F5F5;
+    
+    /* Surface Colors */
+    --surface: #FFFFFF;
+    --surface-variant: #F8F9FA;
+    --surface-disabled: #F5F5F5;
+    
+    /* Border Colors */
+    --border: #E0E0E0;
+    --border-light: #F0F0F0;
+    --border-dark: #BDBDBD;
+    --divider: #E1E1E1;
+    
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-dark: rgba(0, 0, 0, 0.25);
+    
+    /* Brand Specific Colors */
+    --korea-red: #CD2E3A;
+    --korea-blue: #003478;
+    --premium-gold: #FFD700;
+    --premium-silver: #C0C0C0;
+    
+    /* Font Families */
+    --font-primary: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Font Sizes */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    --font-size-5xl: 3rem;      /* 48px */
+    
+    /* Line Heights */
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* Spacing Scale */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-2xl: 3rem;     /* 48px */
+    --space-3xl: 4rem;     /* 64px */
+    --space-4xl: 6rem;     /* 96px */
+    
+    /* Border Radius */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;   /* 4px */
+    --radius-base: 0.5rem;  /* 8px */
+    --radius-md: 0.75rem;   /* 12px */
+    --radius-lg: 1rem;      /* 16px */
+    --radius-xl: 1.5rem;    /* 24px */
+    --radius-2xl: 2rem;     /* 32px */
+    --radius-full: 50%;
+    
+    /* Box Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-base: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+    
+    /* Z-Index Scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
+    
+    /* Breakpoints (for JavaScript usage) */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    
+    /* Content Max Widths */
+    --max-width-xs: 320px;
+    --max-width-sm: 640px;
+    --max-width-md: 768px;
+    --max-width-lg: 1024px;
+    --max-width-xl: 1280px;
+    --max-width-2xl: 1536px;
+    --max-width-full: 100%;
+    
+    /* Container Padding */
+    --container-padding: 1rem;
+    --container-padding-sm: 1.5rem;
+    --container-padding-md: 2rem;
+    --container-padding-lg: 2.5rem;
+}
