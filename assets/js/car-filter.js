@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterForm = document.getElementById('car-filter-form');
     const priceRange = document.getElementById('price');
     const priceOutput = document.getElementById('price-output');
-    const carCards = document.querySelectorAll('.car-card');
+    
+    // Get all car cards (both static and dynamic) - update this function to refresh
+    function getAllCarCards() {
+        return document.querySelectorAll('.car-card');
+    }
 
     // Update price display
     if (priceRange && priceOutput) {
@@ -42,12 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
             price: parseInt(formData.get('price'))
         };
 
+        console.log('Applied filters:', filters); // Debug log
+        
+        const carCards = getAllCarCards(); // Get fresh list of car cards
+        console.log('Total car cards found:', carCards.length); // Debug log
+
         carCards.forEach(card => {
             let show = true;
 
             // Brand filter
             if (filters.brand && filters.brand !== '') {
                 const carBrand = card.getAttribute('data-brand');
+                console.log('Car brand:', carBrand, 'Filter brand:', filters.brand); // Debug log
                 if (carBrand !== filters.brand) {
                     show = false;
                 }
@@ -56,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Year filter
             if (filters.year && filters.year !== '') {
                 const carYear = card.getAttribute('data-year');
+                console.log('Car year:', carYear, 'Filter year:', filters.year); // Debug log
                 if (carYear !== filters.year) {
                     show = false;
                 }
@@ -64,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fuel filter
             if (filters.fuel && filters.fuel !== '') {
                 const carFuel = card.getAttribute('data-fuel');
+                console.log('Car fuel:', carFuel, 'Filter fuel:', filters.fuel); // Debug log
                 if (carFuel !== filters.fuel) {
                     show = false;
                 }
@@ -72,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Price filter
             if (filters.price) {
                 const carPrice = parseInt(card.getAttribute('data-price'));
+                console.log('Car price:', carPrice, 'Filter price:', filters.price); // Debug log
                 if (carPrice > filters.price) {
                     show = false;
                 }
@@ -88,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showAllCars() {
+        const carCards = getAllCarCards(); // Get fresh list of car cards
         carCards.forEach(card => {
             card.style.display = 'block';
         });
