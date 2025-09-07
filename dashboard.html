@@ -1,11 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KoreaDrive.ks - Cars from Korea</title>
+    <title>Dashboard - KoreaDrive.ks</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .cars-list {
+            margin-top: 3rem;
+        }
+        
+        .car-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .car-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--secondary);
+        }
+        
+        .car-info p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="h-light">
@@ -23,16 +141,223 @@
     </header>
     
     <main class="bg-light">
-        <div class="container">
-            <h1>Welcome to KoreaDrive.ks</h1>
-            <p>Your one-stop shop for Korean cars in Pristina!</p>
+        <div class="admin-container">
+            <h1><i class="fas fa-car"></i> Menaxhimi i Veturave</h1>
+            
+            <div class="success-message" id="success-message">
+                Vetura u shtua me sukses!
+            </div>
+            
+            <form id="add-car-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-brand">Marka *</label>
+                        <select id="car-brand" name="brand" required>
+                            <option value="">Zgjidhni markën</option>
+                            <option value="mercedes">Mercedes-Benz</option>
+                            <option value="bmw">BMW</option>
+                            <option value="audi">Audi</option>
+                            <option value="volkswagen">Volkswagen</option>
+                            <option value="other">Të tjera</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="car-model">Modeli *</label>
+                        <input type="text" id="car-model" name="model" required placeholder="p.sh. E-Class, X5, A4">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-year">Viti *</label>
+                        <select id="car-year" name="year" required>
+                            <option value="">Zgjidhni vitin</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="car-fuel">Karburanti *</label>
+                        <select id="car-fuel" name="fuel" required>
+                            <option value="">Zgjidhni karburantin</option>
+                            <option value="petrol">Benzinë</option>
+                            <option value="diesel">Dizel</option>
+                            <option value="hybrid">Hibrid</option>
+                            <option value="electric">Elektrik</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-price">Çmimi (€) *</label>
+                        <input type="number" id="car-price" name="price" required placeholder="25000" min="1000" max="100000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="car-mileage">Kilometrazhi *</label>
+                        <input type="number" id="car-mileage" name="mileage" required placeholder="50000" min="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="car-description">Përshkrimi</label>
+                    <textarea id="car-description" name="description" rows="4" placeholder="Përshkruani veturën (opcionalet, gjendje, etj.)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="car-images">Imazhet</label>
+                    <input type="file" id="car-images" name="images" multiple accept="image/*">
+                    <small style="color: #666;">Zgjidhni deri në 5 fotografi të veturës</small>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-plus"></i> Shto Veturën
+                </button>
+            </form>
+            
+            <div class="cars-list">
+                <h2>Veturat e Shtuar</h2>
+                <div id="cars-container">
+                    <!-- Cars will be populated here -->
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="f-light" id="contact">
         <div class="container">
-            <p>&copy; 2023 KoreaDrive.ks. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KoreaDrive.ks</h3>
+                    <p>Makina premium të importuara direkt nga Koreja dhe vende të tjera - shërbim profesional në Kosovë</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kontaktoni</h4>
+                    <p><i class="fas fa-user"></i> Zejnel Salihu - Prishtinë</p>
+                    <p><i class="fas fa-phone"></i> +383 XX XXX XXX</p>
+                    <p><i class="fas fa-envelope"></i> info@koreadrive.ks</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ndiqni</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KoreaDrive.ks - Të gjitha drejtat e rezervuara</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Car management system
+        let cars = JSON.parse(localStorage.getItem('koreadrive-cars') || '[]');
+        
+        document.getElementById('add-car-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const car = {
+                id: Date.now(),
+                brand: formData.get('brand'),
+                model: formData.get('model'),
+                year: formData.get('year'),
+                fuel: formData.get('fuel'),
+                price: formData.get('price'),
+                mileage: formData.get('mileage'),
+                description: formData.get('description'),
+                dateAdded: new Date().toLocaleDateString('sq-AL')
+            };
+            
+            cars.push(car);
+            localStorage.setItem('koreadrive-cars', JSON.stringify(cars));
+            
+            // Show success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+            
+            // Reset form
+            this.reset();
+            
+            // Update cars list
+            updateCarsList();
+        });
+        
+        function updateCarsList() {
+            const container = document.getElementById('cars-container');
+            
+            if (cars.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">Nuk ka vetura të shtuar ende.</p>';
+                return;
+            }
+            
+            container.innerHTML = cars.map(car => `
+                <div class="car-item">
+                    <div class="car-info">
+                        <h4>${getBrandName(car.brand)} ${car.model} (${car.year})</h4>
+                        <p>Çmimi: ${parseInt(car.price).toLocaleString()}€ | Kilometrazhi: ${parseInt(car.mileage).toLocaleString()} km | Karburanti: ${getFuelName(car.fuel)}</p>
+                        <p>Shtuar më: ${car.dateAdded}</p>
+                    </div>
+                    <button class="btn-delete" onclick="deleteCar(${car.id})">
+                        <i class="fas fa-trash"></i> Fshi
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        function deleteCar(id) {
+            if (confirm('A jeni të sigurt që doni ta fshini këtë veturë?')) {
+                cars = cars.filter(car => car.id !== id);
+                localStorage.setItem('koreadrive-cars', JSON.stringify(cars));
+                updateCarsList();
+            }
+        }
+        
+        function getBrandName(brand) {
+            const names = {
+                'mercedes': 'Mercedes-Benz',
+                'bmw': 'BMW',
+                'audi': 'Audi',
+                'volkswagen': 'Volkswagen',
+                'other': 'Të tjera'
+            };
+            return names[brand] || brand;
+        }
+        
+        function getFuelName(fuel) {
+            const names = {
+                'petrol': 'Benzinë',
+                'diesel': 'Dizel',
+                'hybrid': 'Hibrid',
+                'electric': 'Elektrik'
+            };
+            return names[fuel] || fuel;
+        }
+        
+        // Initialize cars list on page load
+        updateCarsList();
+    </script>
 </body>
 </html>

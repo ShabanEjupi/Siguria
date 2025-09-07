@@ -327,8 +327,8 @@
 
     <section class="cars-hero">
         <div class="container">
-            <h1>Përzgjedhje e Veturave Premium Koreane</h1>
-            <p>Shfleto koleksionin tonë të veturave të importuara direkt nga Koreja, me cilësi të garantuar nga ekspertët koreanë</p>
+            <h1>Përzgjedhje e Veturave Premium</h1>
+            <p>Shfleto koleksionin tonë të veturave të cilësisë së lartë, të importuara me kujdes të veçantë</p>
         </div>
     </section>
 
@@ -339,10 +339,11 @@
                     <label for="brand">Marka</label>
                     <select id="brand" name="brand">
                         <option value="">Të gjitha</option>
-                        <option value="hyundai">Hyundai</option>
-                        <option value="kia">Kia</option>
-                        <option value="genesis">Genesis</option>
-                        <option value="ssangyong">SsangYong</option>
+                        <option value="mercedes">Mercedes-Benz</option>
+                        <option value="bmw">BMW</option>
+                        <option value="audi">Audi</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="other">Të tjera</option>
                     </select>
                 </div>
                 
@@ -395,9 +396,16 @@
 
         <section class="cars-grid-section">
             <h2 class="section-title">Veturat Tona</h2>
+            
+            <!-- Dynamic Cars from Admin Panel -->
+            <div class="cars-grid" id="dynamic-cars">
+                <!-- Dynamically added cars will appear here -->
+            </div>
+            
+            <!-- Static Cars -->
             <div class="cars-grid" id="cars-container">
                 <!-- Car 1 -->
-                <div class="car-card">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="8656">
                     <div class="car-image">
                         <img src="./assets/img/car1.jpg" alt="BMW 5 Series">
                     </div>
@@ -409,7 +417,7 @@
                         <div class="car-specs">
                             <div class="car-spec">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>15/06 type</span>
+                                <span>2015</span>
                             </div>
                             <div class="car-spec">
                                 <i class="fas fa-tachometer-alt"></i>
@@ -420,7 +428,7 @@
                                 <span>Diesel</span>
                             </div>
                         </div>
-                        <p class="car-description">Sedan luksoz BMW, i importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin RoRo. Për Prishtinë +€350.</p>
+                        <p class="car-description">Sedan luksoz BMW, i importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin në Prishtinë.</p>
                         <div class="car-actions">
                             <a href="car-details.html?id=1" class="btn btn-sm">Detajet</a>
                             <a href="contact.html?car=1" class="btn btn-sm btn-outline">Pyetni</a>
@@ -429,7 +437,7 @@
                 </div>
                 
                 <!-- Car 2 -->
-                <div class="car-card">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="petrol" data-price="9200">
                     <div class="car-image">
                         <img src="./assets/img/car2.jpg" alt="BMW 528i">
                     </div>
@@ -441,7 +449,7 @@
                         <div class="car-specs">
                             <div class="car-spec">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>15/05 type</span>
+                                <span>2015</span>
                             </div>
                             <div class="car-spec">
                                 <i class="fas fa-tachometer-alt"></i>
@@ -452,7 +460,7 @@
                                 <span>Benzinë</span>
                             </div>
                         </div>
-                        <p class="car-description">Sedan luksoz me performancë dhe stil. I importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin RoRo. Për Prishtinë +€350.</p>
+                        <p class="car-description">Sedan luksoz me performancë dhe stil. I importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin në Prishtinë.</p>
                         <div class="car-actions">
                             <a href="car-details.html?id=2" class="btn btn-sm">Detajet</a>
                             <a href="contact.html?car=2" class="btn btn-sm btn-outline">Pyetni</a>
@@ -461,7 +469,7 @@
                 </div>
                 
                 <!-- Car 3 -->
-                <div class="car-card">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="electric" data-price="8840">
                     <div class="car-image">
                         <img src="./assets/img/car3.jpg" alt="BMW i3">
                     </div>
@@ -473,7 +481,7 @@
                         <div class="car-specs">
                             <div class="car-spec">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>15/04 type</span>
+                                <span>2015</span>
                             </div>
                             <div class="car-spec">
                                 <i class="fas fa-tachometer-alt"></i>
@@ -484,7 +492,7 @@
                                 <span>Elektrike</span>
                             </div>
                         </div>
-                        <p class="car-description">Veturë elektrike inovative dhe ekonomike. E importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin RoRo. Për Prishtinë +€350.</p>
+                        <p class="car-description">Veturë elektrike inovative dhe ekonomike. E importuar direkt nga Koreja. Çmimi përfshin dërgesën deri në Durrës duke përfshirë transportin në Prishtinë.</p>
                         <div class="car-actions">
                             <a href="car-details.html?id=3" class="btn btn-sm">Detajet</a>
                             <a href="contact.html?car=3" class="btn btn-sm btn-outline">Pyetni</a>
@@ -630,5 +638,7 @@
         });
     </script>
     <script src="./assets/js/navigation.js"></script>
+    <script src="./assets/js/car-filter.js"></script>
+    <script src="./assets/js/dynamic-cars.js"></script>
 </body>
 </html>
