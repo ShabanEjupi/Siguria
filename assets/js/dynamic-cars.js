@@ -15,7 +15,8 @@ function displayDynamicCars(cars, container) {
     const carsHTML = cars.map(car => `
         <div class="car-card" data-brand="${car.brand}" data-year="${car.year}" data-fuel="${car.fuel}" data-price="${car.price}">
             <div class="car-image">
-                <img src="./assets/img/car1.jpg" alt="${getBrandName(car.brand)} ${car.model}" onerror="this.src='./assets/img/placeholder-car.jpg'">
+                <img src="${car.images && car.images.length > 0 ? car.images[0] : './assets/img/car1.jpg'}" alt="${getBrandName(car.brand)} ${car.model}" onerror="this.src='./assets/img/car1.jpg'">
+                ${car.images && car.images.length > 1 ? `<span class="image-count"><i class="fas fa-images"></i> ${car.images.length}</span>` : ''}
             </div>
             <div class="car-details">
                 <div class="car-title">
@@ -35,6 +36,12 @@ function displayDynamicCars(cars, container) {
                         <i class="fas fa-gas-pump"></i>
                         <span>${getFuelName(car.fuel)}</span>
                     </div>
+                    ${car.transmission ? `
+                    <div class="car-spec">
+                        <i class="fas fa-cogs"></i>
+                        <span>${car.transmission === 'automatic' ? 'Automatik' : 'Manual'}</span>
+                    </div>
+                    ` : ''}
                 </div>
                 <p class="car-description">${car.description || 'Veturë e importuar me cilësi të lartë.'}</p>
                 <div class="car-actions">
@@ -54,6 +61,9 @@ function getBrandName(brand) {
         'bmw': 'BMW',
         'audi': 'Audi',
         'volkswagen': 'Volkswagen',
+        'hyundai': 'Hyundai',
+        'kia': 'KIA',
+        'genesis': 'Genesis',
         'other': 'Të tjera'
     };
     return names[brand] || brand;

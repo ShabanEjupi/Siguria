@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Detajet e Veturës - KoreaDrive.ks</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .car-details-hero {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .car-details-hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .car-details-hero p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .car-details-section {
+            padding: 50px 0;
+        }
+
+        .car-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .car-gallery {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .main-image {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background 0.3s;
+        }
+
+        .image-nav:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .image-nav.prev {
+            left: 10px;
+        }
+
+        .image-nav.next {
+            right: 10px;
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            min-width: 80px;
+            height: 60px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .car-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .price-badge {
+            background: var(--primary);
+            color: white;
+            font-size: 2em;
+            font-weight: 700;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .spec-item i {
+            color: var(--primary);
+            font-size: 1.2em;
+            margin-right: 10px;
+            min-width: 25px;
+        }
+
+        .spec-content {
+            flex: 1;
+        }
+
+        .spec-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .contact-section {
+            background: var(--background-light);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .car-description {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .car-description h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--background-light);
+        }
+
+        .related-cars {
+            padding: 50px 0;
+            background: var(--background-light);
+        }
+
+        .related-cars h2 {
+            text-align: center;
+            color: var(--secondary);
+            margin-bottom: 30px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .loading i {
+            font-size: 3em;
+            color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 100px 0;
+            color: #e74c3c;
+        }
+
+        .error-message i {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .car-details-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .car-details-hero h1 {
+                font-size: 2em;
+            }
+
+            .main-image {
+                height: 250px;
+            }
+
+            .price-badge {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <section class="car-details-hero">
+        <div class="container">
+            <h1 id="car-title">Detajet e Veturës</h1>
+            <p id="car-subtitle">Po ngarkohet informacioni...</p>
+        </div>
+    </section>
+
+    <section class="car-details-section">
+        <div class="container">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner"></i>
+                <h3>Po ngarkohet...</h3>
+            </div>
+
+            <div id="car-content" style="display: none;">
+                <div class="car-details-grid">
+                    <div class="car-gallery">
+                        <div class="main-image">
+                            <img id="main-car-image" src="" alt="">
+                            <button class="image-nav prev" onclick="changeImage(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="image-nav next" onclick="changeImage(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="thumbnail-gallery" id="thumbnail-gallery">
+                            <!-- Thumbnails will be added here -->
+                        </div>
+                    </div>
+
+                    <div class="car-info">
+                        <div class="price-badge" id="car-price">
+                            €0
+                        </div>
+
+                        <div class="specs-grid" id="car-specs">
+                            <!-- Specs will be added here -->
+                        </div>
+
+                        <div class="contact-section">
+                            <h3>Interesuar për këtë veturë?</h3>
+                            <div class="contact-buttons">
+                                <a href="tel:+38343809160" class="btn btn-primary">
+                                    <i class="fas fa-phone"></i> Telefono
+                                </a>
+                                <a href="contact.html" class="btn btn-secondary">
+                                    <i class="fas fa-envelope"></i> Kontakto
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="car-description">
+                    <h2>Përshkrimi</h2>
+                    <p id="car-description-text">
+                        <!-- Description will be added here -->
+                    </p>
+                </div>
+            </div>
+
+            <div id="error-message" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Vetura nuk u gjet</h3>
+                <p>Vetura që kërkuat nuk egziston ose është hequr.</p>
+                <a href="cars.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">
+                    Shiko Veturat e Tjera
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-cars">
+        <div class="container">
+            <h2>Vetura të Ngjajshme</h2>
+            <div class="related-grid" id="related-cars">
+                <!-- Related cars will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        let currentCar = null;
+        let currentImageIndex = 0;
+        let carImages = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeaderAndFooter();
+            loadCarDetails();
+        });
+
+        function loadHeaderAndFooter() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        }
+
+        function loadCarDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+
+            if (!carId) {
+                showError();
+                return;
+            }
+
+            // Get car from localStorage
+            const savedCars = JSON.parse(localStorage.getItem('koreadrive-cars') || '[]');
+            currentCar = savedCars.find(car => car.id === carId);
+
+            if (!currentCar) {
+                showError();
+                return;
+            }
+
+            displayCarDetails();
+        }
+
+        function displayCarDetails() {
+            // Update page title
+            document.getElementById('page-title').textContent = `${getBrandName(currentCar.brand)} ${currentCar.model} - KoreaDrive.ks`;
+            document.getElementById('car-title').textContent = `${getBrandName(currentCar.brand)} ${currentCar.model}`;
+            document.getElementById('car-subtitle').textContent = `${currentCar.year} • ${currentCar.color || 'N/A'} • ${getFuelName(currentCar.fuel)}`;
+
+            // Set up images
+            carImages = currentCar.images || ['./assets/img/car1.jpg'];
+            currentImageIndex = 0;
+            displayImages();
+
+            // Display price
+            document.getElementById('car-price').textContent = `€${currentCar.price.toLocaleString()}`;
+
+            // Display specs
+            const specsContainer = document.getElementById('car-specs');
+            specsContainer.innerHTML = `
+                <div class="spec-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Viti</div>
+                        <div class="spec-value">${currentCar.year}</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Kilometrat</div>
+                        <div class="spec-value">${currentCar.mileage.toLocaleString()} km</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-gas-pump"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Karburanti</div>
+                        <div class="spec-value">${getFuelName(currentCar.fuel)}</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-cogs"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Transmisioni</div>
+                        <div class="spec-value">${currentCar.transmission === 'automatic' ? 'Automatik' : 'Manual'}</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-palette"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Ngjyra</div>
+                        <div class="spec-value">${currentCar.color || 'N/A'}</div>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-car"></i>
+                    <div class="spec-content">
+                        <div class="spec-label">Marka</div>
+                        <div class="spec-value">${getBrandName(currentCar.brand)}</div>
+                    </div>
+                </div>
+            `;
+
+            // Display description
+            document.getElementById('car-description-text').textContent = currentCar.description || 'Nuk ka përshkrim të disponueshëm.';
+
+            // Show content and hide loading
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('car-content').style.display = 'block';
+
+            // Load related cars
+            loadRelatedCars();
+        }
+
+        function displayImages() {
+            const mainImage = document.getElementById('main-car-image');
+            const thumbnailGallery = document.getElementById('thumbnail-gallery');
+
+            // Set main image
+            mainImage.src = carImages[currentImageIndex];
+            mainImage.alt = `${getBrandName(currentCar.brand)} ${currentCar.model}`;
+
+            // Create thumbnails
+            if (carImages.length > 1) {
+                thumbnailGallery.innerHTML = carImages.map((img, index) => `
+                    <div class="thumbnail ${index === currentImageIndex ? 'active' : ''}" onclick="setCurrentImage(${index})">
+                        <img src="${img}" alt="Thumbnail ${index + 1}">
+                    </div>
+                `).join('');
+            } else {
+                thumbnailGallery.style.display = 'none';
+            }
+
+            // Hide/show navigation arrows
+            const prevBtn = document.querySelector('.image-nav.prev');
+            const nextBtn = document.querySelector('.image-nav.next');
+            
+            if (carImages.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+        }
+
+        function changeImage(direction) {
+            if (carImages.length <= 1) return;
+
+            currentImageIndex += direction;
+            
+            if (currentImageIndex >= carImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = carImages.length - 1;
+            }
+
+            displayImages();
+        }
+
+        function setCurrentImage(index) {
+            currentImageIndex = index;
+            displayImages();
+        }
+
+        function loadRelatedCars() {
+            const savedCars = JSON.parse(localStorage.getItem('koreadrive-cars') || '[]');
+            const relatedCars = savedCars
+                .filter(car => car.id !== currentCar.id && (car.brand === currentCar.brand || car.fuel === currentCar.fuel))
+                .slice(0, 3);
+
+            const relatedContainer = document.getElementById('related-cars');
+            
+            if (relatedCars.length === 0) {
+                relatedContainer.innerHTML = '<p style="text-align: center; color: #666;">Nuk ka vetura të ngjajshme të disponueshme.</p>';
+                return;
+            }
+
+            relatedContainer.innerHTML = relatedCars.map(car => `
+                <div class="car-card" onclick="window.location.href='car-details.html?id=${car.id}'" style="cursor: pointer; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div style="height: 180px; overflow: hidden;">
+                        <img src="${car.images && car.images.length > 0 ? car.images[0] : './assets/img/car1.jpg'}" alt="${getBrandName(car.brand)} ${car.model}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 20px;">
+                        <h3 style="color: var(--secondary); margin-bottom: 10px;">${getBrandName(car.brand)} ${car.model}</h3>
+                        <p style="color: var(--primary); font-weight: 600; font-size: 1.1em;">€${car.price.toLocaleString()}</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <span>${car.year}</span>
+                            <span>${car.mileage.toLocaleString()} km</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showError() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error-message').style.display = 'block';
+        }
+
+        function getBrandName(brand) {
+            const names = {
+                'mercedes': 'Mercedes-Benz',
+                'bmw': 'BMW',
+                'audi': 'Audi',
+                'volkswagen': 'Volkswagen',
+                'hyundai': 'Hyundai',
+                'kia': 'KIA',
+                'genesis': 'Genesis',
+                'other': 'Të tjera'
+            };
+            return names[brand] || brand;
+        }
+
+        function getFuelName(fuel) {
+            const names = {
+                'petrol': 'Benzinë',
+                'diesel': 'Dizel',
+                'hybrid': 'Hibrid',
+                'electric': 'Elektrik'
+            };
+            return names[fuel] || fuel;
+        }
+    </script>
+    <script src="./assets/js/navigation.js"></script>
+</body>
+</html>
