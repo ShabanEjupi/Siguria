@@ -6,7 +6,7 @@
   <title>Qasja - KoreaDrive.ks | Importuesi i Veturave Koreane në Prishtinë</title>
   <link rel="stylesheet" href="assets/css/style.css"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="carFilter.js"></script>
+  <script src="assets/js/car-filter.js"></script>
 
   <style>
     * {
@@ -373,43 +373,7 @@
     </div>
   </section>
 
-  <section class="container">
-    <h2 class="text-center" style="margin: 40px 0; color: #1a3a7a;">Veturat Koreane të Zgjedhura</h2>
-    <div class="featured-cars">
-      <div class="car-card">
-        <img src="./assets/img/cars/genesis-g80.jpg" alt="Genesis G80">
-        <div class="car-info">
-          <h3>Genesis G80</h3>
-          <p>Viti: 2022</p>
-          <p>Kilometrazhi: 15,000 km</p>
-          <p>Motori: 2.5L Turbo</p>
-          <p class="car-price">€38,000</p>
-        </div>
-      </div>
-      
-      <div class="car-card">
-        <img src="./assets/img/cars/hyundai-tucson.jpg" alt="Hyundai Tucson">
-        <div class="car-info">
-          <h3>Hyundai Tucson</h3>
-          <p>Viti: 2021</p>
-          <p>Kilometrazhi: 32,000 km</p>
-          <p>Motori: 1.6L Hybrid</p>
-          <p class="car-price">€23,840</p>
-        </div>
-      </div>
-      
-      <div class="car-card">
-        <img src="./assets/img/cars/kia-k5.jpg" alt="Kia K5">
-        <div class="car-info">
-          <h3>Kia K5</h3>
-          <p>Viti: 2022</p>
-          <p>Kilometrazhi: 18,500 km</p>
-          <p>Motori: 1.6L Turbo</p>
-          <p class="car-price">€20,720</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Featured cars section removed - cars will be dynamically loaded from admin panel -->
 
   <div id="success-popup" class="popup1">
     <div class="popup1-content">
@@ -448,7 +412,71 @@
     </div>
   </footer>
 
-  <script src="App.js"></script>
+  <script src="assets/js/app.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+  <script>
+    // Login form handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-form');
+      const authLinks = document.getElementById('auth-links');
+      const dashboardLinks = document.getElementById('dashboard-links');
+      
+      // Check if user is already logged in
+      const currentUser = JSON.parse(localStorage.getItem('koreadrive-user') || 'null');
+      if (currentUser) {
+        authLinks.style.display = 'none';
+        dashboardLinks.style.display = 'flex';
+        // Redirect to dashboard if already logged in
+        window.location.href = 'dashboard.html';
+        return;
+      }
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Get registered users
+        const users = JSON.parse(localStorage.getItem('koreadrive-users') || '[]');
+        
+        // Find user
+        const user = users.find(u => u.email === email);
+        
+        if (user && bcrypt.compareSync(password, user.password)) {
+          // Login successful
+          localStorage.setItem('koreadrive-user', JSON.stringify({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            loginTime: new Date().toISOString()
+          }));
+          
+          // Show success popup
+          const popup = document.getElementById('success-popup');
+          popup.style.display = 'block';
+          
+          setTimeout(() => {
+            popup.style.display = 'none';
+            window.location.href = 'dashboard.html';
+          }, 2000);
+        } else {
+          alert('Email ose fjalëkalimi i gabuar!');
+        }
+      });
+      
+      // Logout functionality
+      const logoutLink = document.getElementById('logout-link');
+      if (logoutLink) {
+        logoutLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          localStorage.removeItem('koreadrive-user');
+          authLinks.style.display = 'flex';
+          dashboardLinks.style.display = 'none';
+          window.location.href = 'index.html';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
