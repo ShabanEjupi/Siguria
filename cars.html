@@ -208,6 +208,43 @@
             transition: transform 0.5s ease;
         }
         
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .wishlist-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .wishlist-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .wishlist-btn.active i {
+            color: #e74c3c;
+        }
+        
+        .wishlist-btn i {
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
         .image-count {
             position: absolute;
             top: 10px;
@@ -430,9 +467,12 @@
             <!-- Static Cars -->
             <div class="cars-grid" id="cars-container">
                 <!-- Car 1 -->
-                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="8656">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="8656" data-car-id="1">
                     <div class="car-image">
                         <img src="./assets/img/car1.jpg" alt="BMW 5 Series">
+                        <button class="wishlist-btn" onclick="toggleWishlist(1, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -462,9 +502,12 @@
                 </div>
                 
                 <!-- Car 2 -->
-                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="petrol" data-price="9200">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="petrol" data-price="9200" data-car-id="2">
                     <div class="car-image">
                         <img src="./assets/img/car2.jpg" alt="BMW 528i">
+                        <button class="wishlist-btn" onclick="toggleWishlist(2, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -494,9 +537,12 @@
                 </div>
                 
                 <!-- Car 3 -->
-                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="electric" data-price="8840">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="electric" data-price="8840" data-car-id="3">
                     <div class="car-image">
                         <img src="./assets/img/car3.jpg" alt="BMW i3">
+                        <button class="wishlist-btn" onclick="toggleWishlist(3, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -526,9 +572,12 @@
                 </div>
                 
                 <!-- Car 4 -->
-                <div class="car-card" data-brand="mercedes" data-year="2017" data-fuel="diesel" data-price="15880">
+                <div class="car-card" data-brand="mercedes" data-year="2017" data-fuel="diesel" data-price="15880" data-car-id="4">
                     <div class="car-image">
                         <img src="./assets/img/car4.jpg" alt="Mercedes C-Class">
+                        <button class="wishlist-btn" onclick="toggleWishlist(4, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -558,9 +607,12 @@
                 </div>
                 
                 <!-- Car 5 -->
-                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="7440">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="7440" data-car-id="5">
                     <div class="car-image">
                         <img src="./assets/img/car5.jpg" alt="BMW 3 Series">
+                        <button class="wishlist-btn" onclick="toggleWishlist(5, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -590,9 +642,12 @@
                 </div>
                 
                 <!-- Car 6 -->
-                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="8400">
+                <div class="car-card" data-brand="bmw" data-year="2015" data-fuel="diesel" data-price="8400" data-car-id="6">
                     <div class="car-image">
                         <img src="./assets/img/car6.jpg" alt="BMW 3 Series GT">
+                        <button class="wishlist-btn" onclick="toggleWishlist(6, this)" title="Shto në listën e dëshirave">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="car-details">
                         <div class="car-title">
@@ -660,11 +715,63 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadHTML('header.html', 'header-placeholder');
             loadHTML('footer.html', 'footer-placeholder');
+            updateWishlistButtons();
         });
+
+        // Wishlist functionality
+        function toggleWishlist(carId, button) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const index = wishlist.indexOf(carId);
+            
+            if (index > -1) {
+                // Remove from wishlist
+                wishlist.splice(index, 1);
+                button.classList.remove('active');
+                button.querySelector('i').className = 'far fa-heart';
+                button.title = 'Shto në listën e dëshirave';
+            } else {
+                // Add to wishlist
+                wishlist.push(carId);
+                button.classList.add('active');
+                button.querySelector('i').className = 'fas fa-heart';
+                button.title = 'Hiq nga lista e dëshirave';
+            }
+            
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlistCounter();
+        }
+
+        function updateWishlistButtons() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const buttons = document.querySelectorAll('.wishlist-btn');
+            
+            buttons.forEach(button => {
+                const carId = parseInt(button.getAttribute('onclick').match(/\d+/)[0]);
+                if (wishlist.includes(carId)) {
+                    button.classList.add('active');
+                    button.querySelector('i').className = 'fas fa-heart';
+                    button.title = 'Hiq nga lista e dëshirave';
+                } else {
+                    button.classList.remove('active');
+                    button.querySelector('i').className = 'far fa-heart';
+                    button.title = 'Shto në listën e dëshirave';
+                }
+            });
+        }
+
+        function updateWishlistCounter() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const counter = document.querySelector('.wishlist-counter');
+            if (counter) {
+                counter.textContent = wishlist.length;
+                counter.style.display = wishlist.length > 0 ? 'block' : 'none';
+            }
+        }
     </script>
     <script src="./assets/js/navigation.js"></script>
     <script src="./assets/js/car-filter.js"></script>
     <script src="./assets/js/dynamic-cars.js"></script>
     <script src="./assets/js/sample-data.js"></script>
+    <script src="./assets/js/wishlist.js"></script>
 </body>
 </html>

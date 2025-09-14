@@ -567,17 +567,17 @@ function editCar(carId) {
     adminDashboard.showNotification('Funksioni i editimit do të implementohet së shpejti!', 'info');
 }
 
-function editUser(userId) {
-    // Implementation for editing users
-    console.log('Edit user:', userId);
-    adminDashboard.showNotification('Funksioni i editimit do të implementohet së shpejti!', 'info');
-}
-
 // Initialize admin dashboard
 const adminDashboard = new AdminDashboard();
 
 // Make it globally available
 window.adminDashboard = adminDashboard;
+
+function editUser(userId) {
+    // Implementation for editing users
+    console.log('Edit user:', userId);
+    adminDashboard.showNotification('Funksioni i editimit do të implementohet së shpejti!', 'info');
+}
 
 // Close modal when clicking outside
 window.addEventListener('click', (e) => {
