@@ -1,5 +1,15 @@
 // Main Application JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize notification system
+    if (typeof NotificationManager !== 'undefined') {
+        window.notificationManager = new NotificationManager();
+    }
+    
+    // Initialize wishlist system
+    if (typeof WishlistManager !== 'undefined') {
+        window.wishlistManager = new WishlistManager();
+    }
+
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const nav = document.querySelector('nav');
