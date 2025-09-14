@@ -251,10 +251,106 @@
                 margin: 0 0 10px 0;
             }
         }
+        
+        /* Login Form Styles */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .login-form h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .login-form .btn-login {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-form .btn-login:hover {
+            background: var(--secondary);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .admin-logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .admin-logout:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 <body>
-    <div class="admin-container">
+    <!-- Login Form -->
+    <div id="login-container" class="login-container">
+        <div class="login-form">
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <div class="form-group">
+                <label for="admin-username">Username:</label>
+                <input type="text" id="admin-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" name="password" required>
+            </div>
+            <button type="button" class="btn-login" onclick="adminLogin()">Login</button>
+            <div id="login-error" class="error-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Admin Panel (initially hidden) -->
+    <div id="admin-panel" class="admin-container" style="display: none;">
+        <button class="admin-logout" onclick="adminLogout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
         <div class="admin-header">
             <h1><i class="fas fa-cogs"></i> Admin Panel - KoreaDrive.ks</h1>
             <p>Menaxhoni inventarin e veturave dhe përmbajtjen e faqes</p>
@@ -770,9 +866,68 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // Admin Authentication System
+        function adminLogin() {
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            const errorDiv = document.getElementById('login-error');
+            
+            // Simple authentication - you can modify these credentials
+            const validUsername = 'admin';
+            const validPassword = 'koreadrive2024';
+            
+            if (username === validUsername && password === validPassword) {
+                // Set session
+                sessionStorage.setItem('admin-authenticated', 'true');
+                
+                // Hide login form and show admin panel
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                
+                // Clear form
+                document.getElementById('admin-username').value = '';
+                document.getElementById('admin-password').value = '';
+                errorDiv.style.display = 'none';
+                
+                // Initialize admin panel
+                if (typeof AdminPanel !== 'undefined') {
+                    new AdminPanel();
+                }
+            } else {
+                errorDiv.textContent = 'Invalid username or password';
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function adminLogout() {
+            sessionStorage.removeItem('admin-authenticated');
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+        
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuthenticated = sessionStorage.getItem('admin-authenticated');
+            if (isAuthenticated === 'true') {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+            } else {
+                document.getElementById('login-container').style.display = 'block';
+                document.getElementById('admin-panel').style.display = 'none';
+            }
+        });
+        
+        // Add Enter key support for login form
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('login-container').style.display !== 'none') {
+                adminLogin();
+            }
+        });
     </script>
 
     <!-- Include the external admin JavaScript file -->
+    <script src="./init-cars.js"></script>
     <script src="./assets/js/admin.js"></script>
     <script src="./assets/js/sample-data.js"></script>
 </body>

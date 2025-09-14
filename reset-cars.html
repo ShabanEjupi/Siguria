@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Car Data</title>
+</head>
+<body>
+    <h1>Resetting Car Data...</h1>
+    <p id="status">Please wait...</p>
+    
+    <script src="./init-cars.js"></script>
+    <script>
+        // Clear existing data and initialize with new cars
+        localStorage.removeItem('koreadrive-cars');
+        console.log('Cleared existing car data');
+        
+        // Initialize with new data
+        initializeCarData();
+        
+        document.getElementById('status').innerHTML = 'Car data has been reset successfully!<br><br><a href="cars.html">View Cars</a> | <a href="admin.html">Admin Panel</a>';
+    </script>
+</body>
+</html>
